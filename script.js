@@ -8,6 +8,7 @@ const botaoMenu = document.querySelector(".botao-menu")
 const materias = document.querySelector(".materias")
 const triangulo = document.querySelector(".botao-triangulo")
 botaoMenu.addEventListener("click", () => {
+    botaoMenu.classList.toggle("mostrando")
     materias.classList.toggle("mostrar");
     triangulo.classList.toggle("triangulo-rotate");
 })
@@ -25,6 +26,13 @@ menuOpcoes.forEach(opcao => {
                     secao.classList.toggle("esconder")
                     secao.classList.toggle("mostrar")
                 }
+
+                if (!secao.querySelector("div")) {
+                    secao.classList.toggle("mostrar")
+                    secao.classList.toggle("esconder")
+                }
+
+                botaoMenu.classList.toggle("mostrando")
                 materias.classList.toggle("mostrar");
                 triangulo.classList.toggle("triangulo-rotate");
             })
@@ -40,6 +48,8 @@ menuOpcoes.forEach(opcao => {
                 if (materiaSecao == botaoClicado) {
                     secao.classList.toggle("esconder")
                     secao.classList.toggle("mostrar")
+
+                    botaoMenu.classList.toggle("mostrando")
                     materias.classList.toggle("mostrar");
                     triangulo.classList.toggle("triangulo-rotate");
                 }
