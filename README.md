@@ -1,3 +1,3 @@
-# Agenda-M08
+# Agenda M08
  
-https://miguel-mib.github.io/Agenda-M08/
+https://miguel-mib.github.io/AgendaM08/
