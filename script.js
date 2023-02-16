@@ -16,6 +16,13 @@ botaoMenu.addEventListener("click", () => {
 const menuOpcoes = document.querySelectorAll(".materias button")
 const secoes = document.querySelectorAll(".seção-materia")
 
+secoes.forEach(secao => {   
+    if (!secao.querySelector("div")) {
+        secao.classList.toggle("mostrar")
+        secao.classList.toggle("esconder")
+    }
+})
+
 menuOpcoes.forEach(opcao => {
     opcao.addEventListener("click", botao => {
         let botaoClicado = botao.target.value
@@ -57,49 +64,3 @@ menuOpcoes.forEach(opcao => {
         }
     })
 });
-
-secoes.forEach(secao => {   
-    if (!secao.querySelector("div")) {
-        secao.classList.toggle("mostrar")
-        secao.classList.toggle("esconder")
-    }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class agendaMateria {
-//     constructor(materia) {
-//         this.materia = materia
-//     }
-// }
-
-// const lpb = new agendaMateria("lpb")
-// const mat = new agendaMateria("mat")
-// const fis = new agendaMateria("fis")
-// const qui = new agendaMateria("qui")
-// const bio = new agendaMateria("bio")
-// const his = new agendaMateria("his")
-// const geo = new agendaMateria("geo")
-// const fil = new agendaMateria("fil")
-// const soc = new agendaMateria("soc")
-// const edf = new agendaMateria("edf")
-// const bdd = new agendaMateria("bdd")
-// const poo = new agendaMateria("bdd")
-// const aps = new agendaMateria("aps")
