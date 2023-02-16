@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;500;600;700;800;900&display=swap");
 
 :root {
-    --color-steel-gray-1: #28243c;
-    --color-medium-purple-1: #7949dd;
-    --color-medium-purple-2: #b19ae4;
+  --color-steel-gray-1: #28243c;
+  --color-medium-purple-1: #7949dd;
+  --color-medium-purple-2: #b19ae4;
 }
 
 *,
@@ -18,76 +18,74 @@
 }
 
 body {
-    font-weight: 500;
-    font-family: 'Nunito', sans-serif;
-    background-color: var(--color-steel-gray-1);
-    height: 100vh;
+  font-weight: 500;
+  font-family: "Nunito", sans-serif;
+  background-color: var(--color-steel-gray-1);
+  height: 100vh;
 }
 
-
 .agenda-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 24px 0 24px 0;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px 0 24px 0;
+  width: 100%;
 }
 
 .agenda-header div:nth-child(1) {
-    text-decoration: underline var(--color-medium-purple-1);
-    color: white;
-    display: flex;
-    justify-content: center;
+  text-decoration: underline var(--color-medium-purple-1);
+  color: white;
+  display: flex;
+  justify-content: center;
 }
 .agenda-header div:nth-child(2) {
-    color: white;
-    display: flex;
-    justify-content: center;
+  color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .header-div span {
-    color: var(--color-medium-purple-1);
+  color: var(--color-medium-purple-1);
 }
 
-.main{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
-    gap: 1.5em;
-    padding-bottom: 3em;
+  gap: 1.5em;
+  padding-bottom: 3em;
 }
 
 .escolher-materia {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .escolher-materia h3 {
-    color: white;
-    padding: .5em 0 .5em 0;
+  color: white;
+  padding: 0.5em 0 0.5em 0;
 }
 
 .botao-menu {
-    background-color: var(--color-medium-purple-1);
-    padding: 1em 2.5em;
-    border-radius: 5px;
-    width: 20vw;
-    text-align: left;
-    color: white;
-    cursor: pointer;
+  background-color: var(--color-medium-purple-1);
+  padding: 1em 2.5em;
+  border-radius: 5px;
+  width: 20vw;
+  text-align: left;
+  color: white;
+  cursor: pointer;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    box-shadow:
-    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
@@ -95,62 +93,60 @@ body {
     100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
-.materias { 
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 0;
-    text-align: left;
-    box-shadow:
-        2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-        6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-        12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-        22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-        41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-        100px 100px 80px rgba(0, 0, 0, 0.07);
+.materias {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+  text-align: left;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 .materias button {
-    padding: 1em 2.5em;
-    background-color: white;
-    width: 20vw;
-    text-align: left;
+  padding: 1em 2.5em;
+  background-color: white;
+  width: 20vw;
+  text-align: left;
 
-    cursor: pointer;
+  cursor: pointer;
 }
-.materias button[value=mtd] {
-    color:var(--color-medium-purple-1);
-    font-weight: 700;
-    text-align: center;
+.materias button[value="mtd"] {
+  color: var(--color-medium-purple-1);
+  font-weight: 700;
+  text-align: center;
 }
 
 .materias button:hover {
-    background-color: var(--color-medium-purple-2);
+  background-color: var(--color-medium-purple-2);
 }
 
 .botao-triangulo {
-    transform: rotate(270deg);
+  transform: rotate(270deg);
 }
 
 .triangulo-rotate {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .seção-materia {
-    width: 420px;
-    height: auto;
-    display: none;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
+  width: 420px;
+  height: auto;
+  display: none;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
 
-    padding: 1em 2.5em 2em 2.5em;
-    border-radius: 5px;
+  padding: 1em 2.5em 2em 2.5em;
+  border-radius: 5px;
 
-    background-color: white;
-    box-shadow:
-    2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+  background-color: white;
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
@@ -159,48 +155,48 @@ body {
 }
 
 .seção-materia h2 {
-    padding-bottom: .5em;
+  padding-bottom: 0.5em;
 }
 
 .mostrar {
-    display: flex;
+  display: flex;
 }
 
 .item {
-    text-align: start;
+  text-align: start;
 }
 
 .mostrando {
-    border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
 }
 
 @media screen and (max-width: 768px) {
-    .botao-menu {
-        width: 18em;
-    }
+  .botao-menu {
+    width: 18em;
+  }
 
-    .materias button {
-        width: 18em;
-    }
+  .materias button {
+    width: 18em;
+  }
 
-    .seção-materia {
-        width: 22em;
-    }
+  .seção-materia {
+    width: 22em;
+  }
 }
 
 @media screen and (max-width: 1200px) {
-    .botao-menu {
-        width: 18em;
-    }
+  .botao-menu {
+    width: 18em;
+  }
 }
 
 @media screen and (max-width: 400px) {
-    body {
-      width: fit-content;
-    }
-
-    .main {
-        margin-left: 1.5em;
-        margin-right: 1.5em;
-      }
+  body {
+    width: fit-content;
   }
+
+  .main {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
+}
