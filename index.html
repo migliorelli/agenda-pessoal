@@ -10,89 +10,114 @@
   </head>
   <body>
     <header class="agenda-header">
-      <div class="header-div">
+      <div class="header-title">
         <h1>Agenda da <span>M08</span></h1>
       </div>
-      <div>
+      <div class="dia-atual">
         <h3 class="hoje"></h3>
       </div>
-      <div class="escolher-materia">
-        <h3>Filtrar por matéria</h3>
-        <button class="botao-menu">
-          <span>Escolha a matéria: </span>
-          <span class="botao-triangulo">▶</span>
-        </button>
-        <div class="materias" id="materias">
-          <button value="lpb">LPLB</button>
-          <button value="mat">Matemática</button>
-          <button value="fis">Física</button>
-          <button value="qui">Química</button>
-          <button value="bio">Biologia</button>
-          <button value="his">História</button>
-          <button value="geo">Geografia</button>
-          <button value="fil">Filosofia</button>
-          <button value="soc">Sociologia</button>
-          <button value="edf">Educação Física</button>
-          <button value="bdd">Banco de Dados</button>
-          <button value="poo">POO</button>
-          <button value="aps">APS</button>
-          <button value="mtd">Mostrar tudo</button>
-        </div>
+      <div class="mudar-agenda">
+        <button class="mudar-agenda-btn" id="sala">Agenda da Sala</button>
       </div>
     </header>
     <main class="main" id="main">
-      <div class="lpb seção-materia mostrar">
-        <h2>LPLB</h2>
-        <div class="item">
-          <h4>Trabalho - Livros</h4>
-          <span>Prazo: Fim do 1º semestre</span>
+      <div class="agenda-sala agenda-visivel">
+        <div class="escolher-materia">
+          <h3>Filtrar por matéria</h3>
+          <button class="botao-menu">
+            <span>Escolha a matéria: </span>
+            <span class="botao-triangulo">▶</span>
+          </button>
+          <div class="materias" id="materias">
+            <button value="lpb">LPLB</button>
+            <button value="mat">Matemática</button>
+            <button value="fis">Física</button>
+            <button value="qui">Química</button>
+            <button value="bio">Biologia</button>
+            <button value="his">História</button>
+            <button value="geo">Geografia</button>
+            <button value="fil">Filosofia</button>
+            <button value="soc">Sociologia</button>
+            <button value="edf">Educação Física</button>
+            <button value="bdd">Banco de Dados</button>
+            <button value="poo">POO</button>
+            <button value="aps">APS</button>
+            <button value="mtd">Mostrar tudo</button>
+          </div>
+        </div>
+        <div class="lpb seção-materia mostrar">
+          <h2>LPLB</h2>
+          <div class="item">
+            <h4>Trabalho - Livros</h4>
+            <span>Prazo: Fim do 1º semestre</span>
+          </div>
+        </div>
+        <div class="mat seção-materia mostrar">
+          <h2>Matemática</h2>
+        </div>
+        <div class="fis seção-materia mostrar">
+          <h2>Física</h2>
+        </div>
+        <div class="qui seção-materia mostrar">
+          <h2>Química</h2>
+        </div>
+        <div class="bio seção-materia mostrar">
+          <h2>Biologia</h2>
+          <div class="item">
+            <h4>Trabalho - Jogo</h4>
+            <span>Prazo: Fim do 1º semestre</span>
+          </div>
+        </div>
+        <div class="his seção-materia mostrar">
+          <h2>História</h2>
+        </div>
+        <div class="geo seção-materia mostrar">
+          <h2>Geografia</h2>
+          <div class="item">
+            <h4>Trabalho: Rios</h4>
+            <span>Prazo: Fim do 1º semestre</span>
+          </div>
+        </div>
+        <div class="fil seção-materia mostrar">
+          <h2>Filosofia</h2>
+        </div>
+        <div class="soc seção-materia mostrar">
+          <h2>Sociologia</h2>
+        </div>
+        <div class="edf seção-materia mostrar">
+          <h2>Educação Física</h2>
+        </div>
+        <div class="bdd seção-materia mostrar">
+          <h2>Banco de Dados</h2>
+        </div>
+        <div class="poo seção-materia mostrar">
+          <h2>POO</h2>
+        </div>
+        <div class="aps seção-materia mostrar">
+          <h2>APS</h2>
         </div>
       </div>
-      <div class="mat seção-materia mostrar">
-        <h2>Matemática</h2>
-      </div>
-      <div class="fis seção-materia mostrar">
-        <h2>Física</h2>
-      </div>
-      <div class="qui seção-materia mostrar">
-        <h2>Química</h2>
-      </div>
-      <div class="bio seção-materia mostrar">
-        <h2>Biologia</h2>
-        <div class="item">
-          <h4>Trabalho - Jogo</h4>
-          <span>Prazo: Fim do 1º semestre</span>
+      <div class="agenda-pessoal">
+        <div class="add-elemento">
+          <form class="form-add-elemento">
+            <div class="input-name-div">
+              <span class="nome-span" maxlength="10">Adicionar novo agendamento</span>
+              <input type="text" name="nome" id="nome" placeholder="O que devo fazer?">
+            </div>  
+            <div class="input-div">
+              <input type="date" name="data" id="data">
+              <input type="submit" value="Adicionar">
+            </div>
+            <p class="erro"></p>
+          </form>
         </div>
-      </div>
-      <div class="his seção-materia mostrar">
-        <h2>História</h2>
-      </div>
-      <div class="geo seção-materia mostrar">
-        <h2>Geografia</h2>
-        <div class="item">
-          <h4>Trabalho: Rios</h4>
-          <span>Prazo: Fim do 1º semestre</span>
+        <div class="agendamentos">
         </div>
-      </div>
-      <div class="fil seção-materia mostrar">
-        <h2>Filosofia</h2>
-      </div>
-      <div class="soc seção-materia mostrar">
-        <h2>Sociologia</h2>
-      </div>
-      <div class="edf seção-materia mostrar">
-        <h2>Educação Física</h2>
-      </div>
-      <div class="bdd seção-materia mostrar">
-        <h2>Banco de Dados</h2>
-      </div>
-      <div class="poo seção-materia mostrar">
-        <h2>POO</h2>
-      </div>
-      <div class="aps seção-materia mostrar">
-        <h2>APS</h2>
       </div>
     </main>
   </body>
+  <script src="agenda.js"></script>
   <script src="script.js"></script>
 </html>
+
+
