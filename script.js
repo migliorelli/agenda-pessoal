@@ -100,7 +100,7 @@ formulario.onsubmit = function (event) {
   erro.classList.remove("mostrar-erro");
 
   const titulo = formulario.nome.value;
-  const data = formulario.data.value
+  const data = formulario.data.value;
 
   if (!titulo) {
     mostrarErro("Você precisa colocar um título.");
@@ -111,17 +111,12 @@ formulario.onsubmit = function (event) {
   } else {
     erro.classList.remove("mostrar-erro");
 
+    String(data);
     agenda.adicionar(titulo, data);
-    localStorage.setItem("MiguelMIB@AgendaM08", JSON.stringify(agenda.dados))
-    console.log(agenda.dados)
-    console.log(agenda.agendamentos)
   }
 
-  event.preventDefault();
+  return false;
 };
 
-const dados = JSON.parse(localStorage.getItem("MiguelMIB@AgendaM08")) || {}
-console.log(dados)
-
-agenda.definirDados(dados)
-agenda.carregar()
+agenda.carregar();
+agenda.iniciar();
