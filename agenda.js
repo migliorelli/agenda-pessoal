@@ -42,9 +42,6 @@ var Agenda = class Agenda {
   }
 
   salvarElemento(elemento) {
-    const titulo = elemento.titlulo
-
-    this.agendamentos = [...this.agendamentos, titlulo]
     this.dados = {...this.dados, elemento }
   }
 

@@ -156,7 +156,7 @@ body {
   width: 420px;
   height: auto;
   display: none;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
 
