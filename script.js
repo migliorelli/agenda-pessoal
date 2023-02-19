@@ -98,18 +98,18 @@ function mostrarErro(mensagem) {
   error.innerHTML = mensagem;
 }
 
-formulario.onsubmit = function (event) {
-  event.preventDefault();
+const botaoSubmit = document.querySelector(".botao-submit") 
 
+botaoSubmit.addEventListener("click", () => {
   let erro = document.querySelector(".erro");
   erro.classList.remove("mostrar-erro");
 
-  const titulo = formulario.nome.value;
-  const data = formulario.data.value;
+  const titulo = formulario.querySelector(".titulo").value;
+  const data = formulario.querySelector(".data").value;
 
   if (agenda.elementoExiste(titulo)) {
-  mostrarErro("Agendamento já existe.");
-  return false;
+    mostrarErro("Agendamento já existe.");
+    return false;
   
   } else  if (!titulo) {
     mostrarErro("Você precisa colocar um título.");
@@ -126,5 +126,4 @@ formulario.onsubmit = function (event) {
     String(titulo)
     agenda.adicionarItem(titulo, data);
   }
-
-};
+})
