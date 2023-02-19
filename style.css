@@ -212,24 +212,6 @@ body {
   border-radius: 5px;
   color: white;
 }
-
-/* @media screen and (max-width: 1200px) {
-  .botao-menu {
-    width: 18em;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  body {
-    width: fit-content;
-  }
-
-  .main {
-    margin-left: 1.5em;
-    margin-right: 1.5em;
-  }
-} */
-
 .agenda-pessoal {
   display: none;
   justify-content: center;
@@ -243,8 +225,8 @@ body {
 }
 
 .form-add-elemento {
-  
   width: 600px;
+  margin-bottom: .5em;
 }
 
 .form-add-elemento {
@@ -341,17 +323,19 @@ body {
   flex-direction: column;
 
   gap: 1.5em;
+  margin-bottom: .5em;
 }
 
 .item-background {
   width: 420px;
   height: auto;
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
 
-  padding: 1em 0em 2em 0em;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+
+  padding: 1em 1em 1em 1em;
   border-radius: 5px;
 
   background-color: white;
@@ -364,12 +348,49 @@ body {
 }
 
 .agenda-item {
-  width: 85%;
+  width: 65%;
 
   display: flex;
   flex-direction: column;
   justify-content: start;
+  word-wrap: break-word;
   gap: .5em;
+}
+
+.limpar-agenda button {
+  cursor: pointer ;
+  background: none;
+
+  background-color: var(--color-medium-purple-1);
+  padding: 1em 5em;
+  font-size: 18px;
+  border-radius: 5px;
+  color: white;
+}
+
+.botao-remover button {
+  cursor: pointer ;
+  background: none;
+
+  background-color: var(--color-medium-purple-1);
+  padding: .5em 1em;
+  border-radius: 5px;
+  color: white;
+}
+
+.botao-remover button {
+  cursor: pointer ;
+  background: none;
+
+  background-color: var(--color-medium-purple-1);
+  padding: .5em 1em;
+  border-radius: 5px;
+  color: white;
+
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
 }
 
 @media screen and (max-width: 768px) {

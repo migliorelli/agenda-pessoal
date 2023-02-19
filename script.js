@@ -86,6 +86,9 @@ const agendaFormulario = document.querySelector(".agenda-pessoal");
 const agenda = new Agenda(agendaFormulario);
 const formulario = document.querySelector(".form-add-elemento");
 
+agenda.carregarDados();
+agenda.iniciarAgenda();
+
 function mostrarErro(mensagem) {
   const error = document.querySelector(".erro");
 
@@ -102,21 +105,25 @@ formulario.onsubmit = function (event) {
   const titulo = formulario.nome.value;
   const data = formulario.data.value;
 
-  if (!titulo) {
+  if (agenda.elementoExiste(titulo)) {
+  mostrarErro("Agendamento já existe.");
+  return false;
+  
+  } else  if (!titulo) {
     mostrarErro("Você precisa colocar um título.");
     return false;
+
   } else if (!data) {
     mostrarErro("Você precisa definir uma data.");
     return false;
+
   } else {
     erro.classList.remove("mostrar-erro");
 
     String(data);
-    agenda.adicionar(titulo, data);
+    String(titulo)
+    agenda.adicionarItem(titulo, data);
   }
 
   return false;
 };
-
-agenda.carregar();
-agenda.iniciar();

@@ -1,54 +1,23 @@
 var Agenda = class Agenda {
-  classDados = { 'dadosAgenda': [] };
-
   constructor(agenda) {
     this.agenda = agenda;
     this.agendaContainer = this.agenda.querySelector('.agendamentos');
-
-    this.formulario = this.agenda.querySelector('form');
+    
+    this.dadosAgenda = {};
   }
 
-  carregar() {
+  carregarDados() {
     if (window.localStorage.length == 0 ){
-      localStorage.setItem('titulos', '{"infoTitulos": new Array()}');
-      localStorage.setItem('datas', '{"infoDatas": new Array()}');
+      localStorage.setItem('MIGLIORELLI@agenda', '{}');
       this.definirDados({})
       return
     }
 
-    console.log(localStorage)
-    const localStorageTitulo = localStorage.getItem('titulos')
-    const localStorageData = localStorage.getItem('datas')
+    let Dados = JSON.parse(localStorage.getItem('MIGLIORELLI@agenda'));
 
-
-    let localTitulos = JSON.parse(localStorageTitulo);
-    let localDatas = JSON.parse(localStorageData)
-
-    localTitulos.infoTitulos = ['argg', 'ooorg']
-    localDatas.infoDatas = ['02', '03']
-
-    console.log('carregar() => localTitulos:', localTitulos)
-
-    if (localTitulos.infoTitulos == null) {
-      this.definirDados({})
+    if (Dados == null) {
+      throw 'não tem dado'
     } else {
-      localTitulos = localTitulos.infoTitulos;
-      localDatas = localDatas.infoDatas;
-  
-      let Dados = [];
-  
-      for (let i = 0; i < localTitulos.infoTitulos.lenght; i++) {
-        const objTitulo = String(localTitulos[i]);
-        const objData = String(localDatas[i]);
-        const obj = {
-          "titulo": objTitulo,
-          "data": objData,
-        };
-  
-        Dados.push(obj);
-      }
-  
-      console.log('Carregar() => ', Dados);
       this.definirDados(Dados);
     }
   }
@@ -58,87 +27,80 @@ var Agenda = class Agenda {
       throw 'Não tem dado suficiente nessa porra :D';
     }
 
-    console.log('definirDados() => ', dados);
-
-    this.classDados['dadosAgenda'] = dados;
-
-    console.log('definirDados() => ', dados);
+    this.dadosAgenda = dados;
   }
 
-  iniciar() {
-    const temDados = Object.keys(this.classDados['dadosAgenda']).lenght > 0;
+  iniciarAgenda() {
+    const temDados = Object.keys(this.dadosAgenda).length > 0;
     if (!temDados) return;
 
-    this.classDados['dadosAgenda'].forEach((dadoObj) => {
-      this.#incorporarElemento(dadoObj);
-    });
+    for (let titulo in this.dadosAgenda) {
+      let data = this.dadosAgenda[titulo]
+
+      this.#incorporarElemento(String(titulo), String(data))
+    }
   }
 
-  #incorporarElemento(elemento) {
+  #incorporarElemento(titulo, data) {
     const novaDiv = document.createElement('div');
-    const tituloDiv = elemento.titulo;
-    let dataDiv = elemento.data;
-    const [anoDiv, mesDiv, diaDiv] = dataDiv.split('-');
-    dataDiv = `${diaDiv}/${mesDiv}/${anoDiv}`;
+    const [anoDiv, mesDiv, diaDiv] = data.split('-');
+    const dataDiv = `${diaDiv}/${mesDiv}/${anoDiv}`;
 
     novaDiv.setAttribute('class', 'item-background');
+    novaDiv.setAttribute('id', titulo);
     novaDiv.innerHTML = `   
-      <div class='agenda-item'>
-        <h3>${tituloDiv}</h3>
+      <div class="agenda-item">
+        <h3>${titulo}</h3>
         <span>${dataDiv}</span>
       </div>
+      <div class="botao-remover">
+        <button onclick="agenda.removerItem(this.value)" value="${titulo}">Remover</button>
+      </div>
+    </div> 
     `;
+
     this.agendaContainer.append(novaDiv);
   }
 
-  adicionar(tituloElemento, dataElemento) {
-    const elemento = {
-      titulo: tituloElemento,
-      data: dataElemento,
-    };
+  adicionarItem(titulo, data) {
+    this.dadosAgenda[titulo] = data
+    this.#incorporarElemento(titulo, data);
 
-    this.salvarElemento(elemento);
-    this.#incorporarElemento(elemento);
+    this.atualizarDados();
   }
 
-  salvarElemento(elemento) {
-    // this.classDados['dadosAgenda'].push(elemento);
-    let salvarDados = Array(this.classDados['dadosAgenda'])
-    salvarDados = [...salvarDados, elemento]
-    this.armazenarDados();
-  }
-
-  armazenarDados() {
-    let quantidadeAgendamentos = this.classDados['dadosAgenda'].lenght;
-    let titulos = [];
-    let datas = [];
-
-    for (let i; i < quantidadeAgendamentos; i++) {
-      const objAtual = this.classDados['dadosAgenda'][i];
-      const titulo = objAtual['titulo'];
-      const data = objAtual['data'];
-
-      titulos.push(titulo);
-      datas.push(data);
+  elementoExiste(tituloElemento) {
+    if (tituloElemento in this.dadosAgenda) {
+      return true
     }
 
-    console.log('armazenarDados() => Titulos array:', titulos);
-    console.log('armazenarDados() => Datas array:', datas);
+    return false
+  }
 
-    titulos = { "infoTitulos": titulos };
-    datas = { "infoDatas": datas };
+  removerItem(item){
+    for (let titulo in this.dadosAgenda) {
+      if (String(titulo) == String(item)) {
+        delete this.dadosAgenda[titulo]
+      }
+    }
 
-    console.log('armazenarDados() => Titulos obj:', titulos);
-    console.log('armazenarDados() => Datas obj:', datas);
+    this.agendaContainer.innerHTML = ''
+    this.atualizarDados()
+    this.iniciarAgenda()
+  }
 
-    const stringTitulos = JSON.stringify(titulos);
-    const stringDatas = JSON.stringify(datas);
+  atualizarDados() {
+    const stringDados = JSON.stringify(this.dadosAgenda);
 
-    localStorage.setItem('titulos', stringTitulos);
-    localStorage.setItem('datas', stringDatas);
+    localStorage.setItem('MIGLIORELLI@agenda', stringDados);
+  }
 
-    console.log('armazenarDados() => Titulos stringify:', stringTitulos);
-    console.log('armazenarDados() => Datas stringify:', stringDatas);
-    console.log('Agenda => this.classDados:', this.classDados);
+  limparDados() {
+    localStorage.clear()
+    this.agendaContainer.innerHTML = ''
+    
+    this.carregarDados()
+    this.atualizarDados()
+    this.iniciarAgenda()
   }
 };
