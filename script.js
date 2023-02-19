@@ -99,6 +99,8 @@ function mostrarErro(mensagem) {
 }
 
 formulario.onsubmit = function (event) {
+  event.preventDefault();
+
   let erro = document.querySelector(".erro");
   erro.classList.remove("mostrar-erro");
 
@@ -125,5 +127,4 @@ formulario.onsubmit = function (event) {
     agenda.adicionarItem(titulo, data);
   }
 
-  return false;
 };
