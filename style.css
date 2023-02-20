@@ -9,10 +9,14 @@
   --cor-texto-botoes: white;
   --cor-texto-container: black;
   --cor-container: white;
-  --cor-filtro: invert(13%) sepia(25%) saturate(864%) hue-rotate(210deg) brightness(96%) contrast(96%);
+  --cor-filtro: invert(13%) sepia(25%) saturate(864%) hue-rotate(210deg)
+    brightness(96%) contrast(96%);
 }
 
-.testeeeee {color: #d4b684; color: #b19ae4}
+.testeeeee {
+  color: #d4b684;
+  color: #b19ae4;
+}
 
 *,
 *::before,
@@ -23,6 +27,7 @@
   border: 0;
   outline: none;
   scroll-behavior: smooth;
+  flex-wrap: wrap;
 }
 
 ::-webkit-scrollbar {
@@ -208,7 +213,7 @@ body {
   border-radius: 5px 5px 0px 0px;
 }
 
-.creditos {
+.tema-atual {
   display: flex;
   justify-content: center;
   width: 60%;
@@ -217,18 +222,18 @@ body {
   text-align: justify;
 }
 
-.creditos div {
+.tema-atual div {
   background-color: var(--cor-principal-1);
   color: var(--cor-texto-botoes);
   padding: 0.5em 1em;
   border-radius: 5px;
 
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-  100px 100px 80px rgba(0, 0, 0, 0.07);
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 .agenda-pessoal {
@@ -250,11 +255,11 @@ body {
 
 .form-add-elemento input {
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-  100px 100px 80px rgba(0, 0, 0, 0.07);
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 .input-name-div {
@@ -389,11 +394,11 @@ body {
   border-radius: 5px;
   color: var(--cor-texto-botoes);
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-  100px 100px 80px rgba(0, 0, 0, 0.07);
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 .botao-remover button {
@@ -486,13 +491,10 @@ body {
   display: flex;
 }
 
-.temas-menu {
+.temas-botao {
   position: absolute;
   top: 10px;
   right: 10px;
-}
-
-.temas-botao {
   width: 3em;
   height: 3em;
   background-color: var(--cor-principal-1);
@@ -500,15 +502,28 @@ body {
 
   cursor: pointer;
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-  100px 100px 80px rgba(0, 0, 0, 0.07);
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
 .temas-botao img {
   width: 80%;
   height: 80%;
   filter: var(--cor-filtro);
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+
+  color: var(--cor-texto);
+  padding: .5em 0;
+
+  position:absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

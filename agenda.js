@@ -5,7 +5,7 @@ var Agenda = class Agenda {
 
     this.dadosAgenda = {};
     this.listaTemas = {
-      roxo: { 
+      roxoEscuro: {
         "--cor-fundo": "#28243c",
         "--cor-principal-1": "#7949dd",
         "--cor-principal-2": "#b19ae4",
@@ -14,18 +14,22 @@ var Agenda = class Agenda {
         "--cor-texto-botoes": "white",
         "--cor-texto-container": "black",
         "--cor-container": "white",
-        "--cor-filtro": "invert(13%) sepia(25%) saturate(864%) hue-rotate(210deg) brightness(96%) contrast(96%)" },
-      roxoClaro: { 
+        "--cor-filtro":
+          "invert(13%) sepia(25%) saturate(864%) hue-rotate(210deg) brightness(96%) contrast(96%)",
+      },
+      roxoClaro: {
         "--cor-fundo": "#ececec",
-        "--cor-principal-1": "#7949dd", 
+        "--cor-principal-1": "#7949dd",
         "--cor-principal-2": "#b19ae4",
         "--cor-principal-3": "#8f06ff67",
         "--cor-texto": "black",
         "--cor-texto-botoes": "white",
         "--cor-texto-container": "black",
         "--cor-container": "white",
-        "--cor-filtro": "invert(92%) sepia(56%) saturate(12%) hue-rotate(220deg) brightness(118%) contrast(85%)"},
-      escuro: {
+        "--cor-filtro":
+          "invert(92%) sepia(56%) saturate(12%) hue-rotate(220deg) brightness(118%) contrast(85%)",
+      },
+      amareloEscuro: {
         "--cor-fundo": "#0d1017",
         "--cor-principal-1": "#d4993a",
         "--cor-principal-2": "#d4b684",
@@ -34,14 +38,148 @@ var Agenda = class Agenda {
         "--cor-texto-botoes": "white",
         "--cor-texto-container": "black",
         "--cor-container": "white",
-        "--cor-filtro": "invert(4%) sepia(6%) saturate(4849%) hue-rotate(184deg) brightness(96%) contrast(94%)" }
-    }
+        "--cor-filtro":
+          "invert(4%) sepia(6%) saturate(4849%) hue-rotate(184deg) brightness(96%) contrast(94%)",
+      },
+      amareloClaro: {
+        "--cor-fundo": "#ececec",
+        "--cor-principal-1": "#d4993a",
+        "--cor-principal-2": "#d4b684",
+        "--cor-principal-3": "#49424e67",
+        "--cor-texto": "black",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(92%) sepia(56%) saturate(12%) hue-rotate(220deg) brightness(118%) contrast(85%)",
+      },
+      vermelhoEscuro: {
+        "--cor-fundo": "#130d17",
+        "--cor-principal-1": "#990011FF",
+        "--cor-principal-2": "#D54754",
+        "--cor-principal-3": "#FF809B",
+        "--cor-texto": "white",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(4%) sepia(4%) saturate(7275%) hue-rotate(232deg) brightness(95%) contrast(95%)",
+      },
+      vermelhoClaro: {
+        "--cor-fundo": "#ececec",
+        "--cor-principal-1": "#990011FF",
+        "--cor-principal-2": "#D54754",
+        "--cor-principal-3": "#FF809B",
+        "--cor-texto": "black",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(92%) sepia(56%) saturate(12%) hue-rotate(220deg) brightness(118%) contrast(85%)",
+      },
+      rosaEscuro: {
+        "--cor-fundo": "#B7819B",
+        "--cor-principal-1": "#FF8DC7",
+        "--cor-principal-2": "#FFACC7",
+        "--cor-principal-3": "#FFDDD2",
+        "--cor-texto": "white",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(62%) sepia(8%) saturate(1417%) hue-rotate(279deg) brightness(90%) contrast(80%)",
+      },
+      rosaClaro: {
+        "--cor-fundo": "#ececec",
+        "--cor-principal-1": "#FF8DC7",
+        "--cor-principal-2": "#FFACC7",
+        "--cor-principal-3": "#FFDDD2",
+        "--cor-texto": "black",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(92%) sepia(56%) saturate(12%) hue-rotate(220deg) brightness(118%) contrast(85%)",
+      },
+      azulEscuro: {
+        "--cor-fundo": "#404756",
+        "--cor-principal-1": "#8AAAE5",
+        "--cor-principal-2": "#b2c7ec",
+        "--cor-principal-3": "#cbd6e7",
+        "--cor-texto": "white",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(25%) sepia(4%) saturate(2396%) hue-rotate(183deg) brightness(99%) contrast(88%)",
+      },
+      azulClaro: {
+        "--cor-fundo": "#ececec",
+        "--cor-principal-1": "#8AAAE5",
+        "--cor-principal-2": "#b2c7ec",
+        "--cor-principal-3": "#cbd6e7",
+        "--cor-texto": "black",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(92%) sepia(56%) saturate(12%) hue-rotate(220deg) brightness(118%) contrast(85%)",
+      },
+      verdeEscuro: {
+        "--cor-fundo": "#3B4A3F",
+        "--cor-principal-1": "#2BAE66FF",
+        "--cor-principal-2": "#8bdbaf",
+        "--cor-principal-3": "#aee2c6",
+        "--cor-texto": "white",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(26%) sepia(12%) saturate(610%) hue-rotate(83deg) brightness(97%) contrast(92%)",
+      },
+      verdeClaro: {
+        "--cor-fundo": "#ececec",
+        "--cor-principal-1": "#2BAE66FF",
+        "--cor-principal-2": "#8bdbaf",
+        "--cor-principal-3": "#aee2c6",
+        "--cor-texto": "black",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(92%) sepia(56%) saturate(12%) hue-rotate(220deg) brightness(118%) contrast(85%)",
+      },
+      retroEscuro: {
+        "--cor-fundo": "#6F5643",
+        "--cor-principal-1": "#cc6b49",
+        "--cor-principal-2": "#d2a24c",
+        "--cor-principal-3": "#73bda8",
+        "--cor-texto": "white",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(32%) sepia(38%) saturate(378%) hue-rotate(343deg) brightness(97%) contrast(89%)",
+      },
+      retroClaro: {
+        "--cor-fundo": "#ece6c2",
+        "--cor-principal-1": "#cc6b49",
+        "--cor-principal-2": "#d2a24c",
+        "--cor-principal-3": "#73bda8",
+        "--cor-texto": "black",
+        "--cor-texto-botoes": "white",
+        "--cor-texto-container": "black",
+        "--cor-container": "white",
+        "--cor-filtro":
+          "invert(94%) sepia(9%) saturate(605%) hue-rotate(8deg) brightness(97%) contrast(95%)",
+      },
+    };
   }
 
   carregarDados(tema = "roxo") {
     if (window.localStorage.length == 0) {
       localStorage.setItem("MIGLIORELLI@agenda", `{tema: "${tema}"}`);
-      this.definirDados({tema: tema});
+      this.definirDados({ tema: tema });
       return;
     }
 
@@ -51,8 +189,8 @@ var Agenda = class Agenda {
       throw "não tem dado";
     } else {
       for (let item in Dados) {
-        if (item === "tema") {
-          continue
+        if (item === "tema" || item === "temaLabel") {
+          continue;
         }
 
         const checado = Object.keys(Dados[[item]])[1];
@@ -80,7 +218,9 @@ var Agenda = class Agenda {
     for (let titulo in this.dadosAgenda) {
       let item = this.dadosAgenda[titulo];
       if (titulo == "tema") {
-        this.mudarTema(item)
+        this.mudarTema(item);
+        continue;
+      } else if (titulo == "temaLabel") {
         continue
       }
 
@@ -166,7 +306,7 @@ var Agenda = class Agenda {
   }
 
   limparDados() {
-    const temaAtual = this.dadosAgenda['tema']
+    const temaAtual = this.dadosAgenda["tema"];
     localStorage.clear();
     this.agendaContainer.innerHTML = "";
 
@@ -176,38 +316,62 @@ var Agenda = class Agenda {
   }
 
   mudarTema(tema = null) {
+    const root = document.querySelector(":root");
+    const temas = this.listaTemas;
+    const temaLabel = document.querySelector(".tema-atual div");
+    const nomesTemas = [
+      "escuro: Roxo",
+      "claro: Roxo",
+      "escuro: Amarelo",
+      "claro: Amarelo",
+      "escuro: Vermelho",
+      "claro: Vermelho",
+      "escuro: Rosa",
+      "claro:  Rosa",
+      "escuro: Azul",
+      "claro: Azul",
+      "escuro: Verde",
+      "claro: Verde",
+      "escuro: Retrô",
+      "claro: Retrô",
+    ];
+
     if (tema) {
-      
-      const temas = this.listaTemas
-      const temaIndex = Object.keys(temas).indexOf(tema)
-      const temaNome = Object.keys(temas)[temaIndex]
-      const colocarTema = temas[temaNome]
-      const root = document.querySelector(":root")
+      const temaIndex = Object.keys(temas).indexOf(tema);
+      const temaNome = Object.keys(temas)[temaIndex];
+      const colocarTema = temas[temaNome];
 
       for (let cor in colocarTema) {
-        root.style.setProperty(cor, colocarTema[cor])
+        root.style.setProperty(cor, colocarTema[cor]);
       }
-      
-      this.dadosAgenda['tema'] = tema
-      this.atualizarDados()
-      return
-    }
-    
-    const root = document.querySelector(":root")
-    const temas = this.listaTemas
-    const temaAtual = String(this.dadosAgenda['tema'])
-    const temaAtualIndex = Object.keys(temas).indexOf(temaAtual)
 
-    const proximoTemaIndex = temaAtualIndex + 1 > Object.keys(temas).length - 1 ? 0 : temaAtualIndex + 1
-    const proximoTemaNome = Object.keys(temas)[proximoTemaIndex]
-    const proximoTema = temas[proximoTemaNome]
-    this.dadosAgenda['tema'] = proximoTemaNome
+      this.dadosAgenda["tema"] = tema;
+      this.dadosAgenda["temaLabel"] = nomesTemas[temaIndex];
+      temaLabel.innerHTML = `Tema ${nomesTemas[temaIndex]}`
+
+      this.atualizarDados();
+      return;
+    }
+
+    const temaAtual = String(this.dadosAgenda["tema"]);
+    const temaAtualIndex = Object.keys(temas).indexOf(temaAtual);
+
+    const proximoTemaIndex =
+      temaAtualIndex + 1 > Object.keys(temas).length - 1
+        ? 0
+        : temaAtualIndex + 1;
+    const proximoTemaNome = Object.keys(temas)[proximoTemaIndex];
+    const proximoTema = temas[proximoTemaNome];
+    this.dadosAgenda["tema"] = proximoTemaNome;
 
     for (let cor in proximoTema) {
-      root.style.setProperty(cor, proximoTema[cor])
+      root.style.setProperty(cor, proximoTema[cor]);
     }
 
-    this.dadosAgenda['tema'] = proximoTemaNome
-    this.atualizarDados()
+    this.dadosAgenda["tema"] = proximoTemaNome;
+    this.dadosAgenda["temaLabel"] = nomesTemas[proximoTemaIndex];
+    temaLabel.innerHTML = `Tema ${nomesTemas[proximoTemaIndex]}`
+
+    this.atualizarDados();
   }
 };
