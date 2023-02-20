@@ -1,6 +1,6 @@
 # Agenda Pessoal
 ##### Ative os cookies do site para a agenda pessoal funcionar!
-### [link do site](htpps://miguel-mib.github.io/AgendaPessoal/)
+### [link do site](miguel-mib.github.io/AgendaPessoal/)
 
 
 
