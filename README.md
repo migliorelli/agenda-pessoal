@@ -1,4 +1,4 @@
-<center class="bo">
+<center>
 
 <h1 style="color:white;text-decoration: underline #7949dd;">Agenda <span style="color:#7949dd;">M08</span></h1>
 <h5 style="color:white;">Ative os cookies do site para a agenda pessoal funcionar!</h5>
