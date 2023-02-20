@@ -7,83 +7,6 @@ const agendaSala = document.querySelector(".agenda-sala");
 const agendaPessoal = document.querySelector(".agenda-pessoal");
 const limparBotao = document.querySelector(".limpar-agenda");
 
-headerBotao.addEventListener("click", () => {
-  agendaSala.classList.toggle("visivel");
-  agendaPessoal.classList.toggle("visivel");
-  limparBotao.classList.toggle("visivel");
-
-  headerBotao.innerHTML = agendaPessoal.classList.contains("visivel")
-    ? "Agenda Pessoal"
-    : "Agenda da M08";
-});
-
-const botaoMenu = document.querySelector(".botao-menu");
-const materias = document.querySelector(".materias");
-const triangulo = document.querySelector(".botao-triangulo");
-botaoMenu.addEventListener("click", () => {
-  botaoMenu.classList.toggle("mostrando");
-  materias.classList.toggle("mostrar");
-  triangulo.classList.toggle("triangulo-rotate");
-});
-
-const menuOpcoes = document.querySelectorAll(".materias button");
-const secoes = document.querySelectorAll(".seção-materia");
-
-secoes.forEach((secao) => {
-  if (!secao.querySelector("div")) {
-    let secaoVazia = `
-      <div class="item" style="justify-content: center;text-align: center;">
-        <span>Não há nenhuma tarefa marcada.</span>
-      </div>
-    `;
-    secao.classList.toggle("mostrar");
-    secao.classList.toggle("esconder");
-    secao.innerHTML = secao.innerHTML + secaoVazia;
-  }
-});
-
-menuOpcoes.forEach((opcao) => {
-  opcao.addEventListener("click", (botao) => {
-    let botaoClicado = botao.target.value;
-
-    if (botaoClicado == "mtd") {
-      secoes.forEach((secao) => {
-        if (!secao.classList.contains("mostrar")) {
-          secao.classList.toggle("esconder");
-          secao.classList.toggle("mostrar");
-        }
-
-        if (!secao.querySelector("div")) {
-          secao.classList.toggle("mostrar");
-          secao.classList.toggle("esconder");
-        }
-
-        botaoMenu.classList.toggle("mostrando");
-        materias.classList.toggle("mostrar");
-        triangulo.classList.toggle("triangulo-rotate");
-      });
-    } else {
-      secoes.forEach((secao) => {
-        let materiaSecao = secao.classList[0];
-
-        if (!secao.classList.contains("esconder")) {
-          secao.classList.toggle("mostrar");
-          secao.classList.toggle("esconder");
-        }
-
-        if (materiaSecao == botaoClicado) {
-          secao.classList.toggle("esconder");
-          secao.classList.toggle("mostrar");
-
-          botaoMenu.classList.toggle("mostrando");
-          materias.classList.toggle("mostrar");
-          triangulo.classList.toggle("triangulo-rotate");
-        }
-      });
-    }
-  });
-});
-
 const agendaFormulario = document.querySelector(".agenda-pessoal");
 const agenda = new Agenda(agendaFormulario);
 const formulario = document.querySelector(".form-add-elemento");
@@ -95,7 +18,7 @@ function mostrarErro(mensagem) {
   const error = document.querySelector(".erro");
 
   error.style.transform = "translateY(0px)";
-  error.style.opacity = ".7";
+  error.style.opacity = "1";
   error.classList.add("mostrar-erro");
   error.innerHTML = mensagem;
 }
