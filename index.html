@@ -11,17 +11,17 @@
   <body>
     <header class="agenda-header">
       <div class="header-title">
-        <h1>Agenda da <span>M08</span></h1>
+        <h1><span> >> </span>Agenda<span> << </span></h1>
       </div>
       <div class="dia-atual">
         <h3 class="hoje"></h3>
       </div>
       <div class="mudar-agenda">
-        <button class="mudar-agenda-btn" id="sala">Agenda da Sala</button>
+        <button class="mudar-agenda-btn" id="sala">Agenda Pessoal</button>
       </div>
     </header>
     <main class="main" id="main">
-      <div class="agenda-sala agenda-visivel">
+      <div class="agenda-sala">
         <div class="escolher-materia">
           <h3>Filtrar por matéria</h3>
           <button class="botao-menu">
@@ -105,7 +105,7 @@
           <h2>APS</h2>
         </div>
       </div>
-      <div class="agenda-pessoal">
+      <div class="agenda-pessoal visivel">
         <div class="add-elemento">
           <div class="form-add-elemento">
             <div class="input-name-div">
@@ -120,8 +120,9 @@
           </div>
         </div>
         <div class="agendamentos">
+          </div>
         </div>
-        <div class="limpar-agenda">
+        <div class="visivel limpar-agenda ">
           <button onclick="agenda.limparDados()">Limpar agenda</button>
         </div>
       </div>

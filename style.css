@@ -18,7 +18,11 @@
   scroll-behavior: smooth;
 }
 
-::selection{
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+::selection {
   background: var(--color-medium-purple-3);
 }
 
@@ -182,7 +186,7 @@ body {
 }
 
 .item {
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
   width: 85%;
 
   display: flex;
@@ -198,20 +202,21 @@ body {
   display: flex;
   justify-content: center;
   width: 60%;
-  padding: .5em 0 0 0;
+  padding: 0.5em 0 0 0;
   gap: 2em;
   text-align: justify;
 }
 
 .mudar-agenda button {
-  cursor: pointer ;
+  cursor: pointer;
   background: none;
 
   background-color: var(--color-medium-purple-1);
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border-radius: 5px;
   color: white;
 }
+
 .agenda-pessoal {
   display: none;
   justify-content: center;
@@ -220,13 +225,9 @@ body {
   gap: 1em;
 }
 
-.agenda-visivel {
-  display: flex;
-}
-
 .form-add-elemento {
   width: 600px;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .form-add-elemento {
@@ -246,18 +247,18 @@ body {
   width: 100%;
 }
 
-.input-name-div span{
+.input-name-div span {
   color: rgba(255, 255, 255, 0.8);
   width: 100%;
-  padding-left: .5em;
+  padding-left: 0.5em;
 
   font-size: 14px;
 }
 
-.input-name-div input{
+.input-name-div input {
   background: var(--color-medium-purple-2);
   color: white;
-  padding: .5em;
+  padding: 0.5em;
 
   border-radius: 5px 5px 0 0;
   width: 100%;
@@ -273,10 +274,10 @@ body {
   width: 100%;
 }
 
-.input-div input[type=date] {
+.input-div input[type="date"] {
   color: rgba(255, 255, 255, 0.6);
 
-  padding: .5em;
+  padding: 0.5em;
   width: 40%;
   height: 30px;
   border-radius: 0 0 0 5px;
@@ -285,8 +286,7 @@ body {
   color: white;
 }
 
-
-.input-div input[type=submit] {
+.input-div input[type="submit"] {
   cursor: pointer;
   background: var(--color-medium-purple-1);
   color: white;
@@ -299,7 +299,7 @@ body {
   color: rgba(255, 255, 255, 0.6);
 }
 
-::-webkit-calendar-picker-indicator{
+::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
 }
@@ -308,7 +308,7 @@ body {
   transform: translateY(-30px);
   color: #ffffff;
   opacity: 0;
-  padding: .5em 0 0 0;
+  padding: 0.5em 0 0 0;
   transition: all 200ms linear;
 }
 
@@ -323,7 +323,7 @@ body {
   flex-direction: column;
 
   gap: 1.5em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .item-background {
@@ -354,11 +354,15 @@ body {
   flex-direction: column;
   justify-content: start;
   word-wrap: break-word;
-  gap: .5em;
+  gap: 0.5em;
+}
+
+.limpar-agenda {
+  display: none;
 }
 
 .limpar-agenda button {
-  cursor: pointer ;
+  cursor: pointer;
   background: none;
 
   background-color: var(--color-medium-purple-1);
@@ -369,28 +373,81 @@ body {
 }
 
 .botao-remover button {
-  cursor: pointer ;
+  cursor: pointer;
   background: none;
 
   background-color: var(--color-medium-purple-1);
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border-radius: 5px;
   color: white;
 }
 
 .botao-remover button {
-  cursor: pointer ;
+  cursor: pointer;
   background: none;
 
   background-color: var(--color-medium-purple-1);
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border-radius: 5px;
   color: white;
 
   justify-content: center;
   align-items: center;
   display: flex;
+}
 
+.checkbox {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.checkbox-label {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-label input {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: var(--color-medium-purple-2);
+  border-radius: 5px;
+}
+
+.checkbox-label:hover input ~ .checkmark {
+  background-color: var(--color-medium-purple-1);
+}
+
+.checkbox-label input:checked ~ .checkmark {
+  background-color: var(--color-medium-purple-1);
+}
+
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-label input:checked ~ .checkmark::after {
+  display: block;
+}
+
+.checkbox-label .checkmark::after {
+  left: 10px;
+  top: 6px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }
 
 @media screen and (max-width: 768px) {
@@ -409,4 +466,8 @@ body {
   .item-background {
     width: 22em;
   }
+}
+
+.visivel {
+  display: flex;
 }
