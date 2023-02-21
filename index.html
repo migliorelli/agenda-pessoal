@@ -8,7 +8,26 @@
     <meta name="theme-color" content="#28243c" />
     <title>Agenda Pessoal</title>
   </head>
-  <body>  
+  <body>
+    <div class="tela-backup">
+      <div class="backup-titulo">
+        <h2>Sistema de backup</h2>
+        <span>Para fazer o backup de seus dados, clique no <span>botão</span> abaixo para copiar o código de backup</span>
+      </div>
+      <div class="json-atual" onclick="agenda.copiarDados(this)">
+        Copiar dados
+      </div>
+      <div class="backup-descricao">
+        <span>Agora, em outro dispositivo, cole os dados que você copiou no campo a seguir, e clique em <span>fazer backup</span></span>
+      </div>
+      <div class="novo-json">
+        <textarea class="novos-dados-txt" name="novo-json" id="novo-json" placeholder="Cole aqui os seus dados..." spellcheck="false"></textarea>
+      </div>
+      <div class="fazer-backup" onclick="agenda.fazerBackup(this)">Fazer backup</div>
+    </div>
+    <div class="backup-botao" onclick="toogleTelaBackup()">
+      <img src="assets/backup.svg" alt="fazer-backup">
+    </div>
     <div class="temas-botao" onclick="agenda.mudarTema()">
       <img src="assets/paleta.svg" alt="mudar-tema">
     </div>

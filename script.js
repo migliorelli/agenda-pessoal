@@ -57,3 +57,19 @@ botaoSubmit.addEventListener("click", () => {
     formulario.querySelector(".hora").value = "";
   }
 });
+
+let telaBackup = document.querySelector(".tela-backup")
+
+function toogleTelaBackup() {
+  if (telaBackup.classList.contains("mostrar-backup")) {
+    telaBackup.style.opacity = "0";
+    telaBackup.style.animation = "backupOut 0.3s ease-in-out";
+    telaBackup.classList.toggle("mostrar-backup")
+
+  } else {
+    telaBackup.style.opacity = "1";
+    telaBackup.style.animation = "backupIn 0.3s ease-in-out";
+    telaBackup.classList.toggle("mostrar-backup")
+  }
+
+}

@@ -359,4 +359,26 @@ var Agenda = class Agenda {
 
     this.atualizarDados();
   }
+
+  copiarDados(e){
+    let dadosAtuais = localStorage.getItem("MIGLIORELLI@agenda")
+    navigator.clipboard.writeText(dadosAtuais)
+
+    e.innerHTML = "Dados copiados"
+  }
+
+  fazerBackup(e){
+    e.innerHTML = "Backup feito"
+    this.limparDados()
+
+    let textField = document.querySelector(".novos-dados-txt")
+    let novosDados = textField.value
+
+    textField.value = ""
+    localStorage.setItem("MIGLIORELLI@agenda", novosDados)
+    
+    this.carregarDados()
+    this.iniciarAgenda()
+    this.atualizarDados()
+  }
 };
