@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;500;600;700;800;900&display=swap");
 
 :root {
-  --cor-fundo: ;
-  --cor-principal-1: ;
-  --cor-principal-2: ;
-  --cor-principal-3: ;
-  --cor-texto: ;
-  --cor-texto-botoes: ;
-  --cor-texto-container: ;
-  --cor-container: ;
-  --cor-filtro: ;
+  --cor-fundo: #28243c;
+  --cor-principal-1: #7949dd;
+  --cor-principal-2: #b19ae4;
+  --cor-principal-3: #8f06ff67;
+  --cor-texto: white;
+  --cor-texto-botoes: white;
+  --cor-texto-container: black;
+  --cor-container: white;
+  --cor-filtro: invert(13%) sepia(25%) saturate(864%) hue-rotate(210deg) brightness(96%) contrast(96%);
 }
 
 .testeeeee {
