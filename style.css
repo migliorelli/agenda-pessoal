@@ -470,8 +470,8 @@ body {
 }
 
 .tela-backup {
-  width: 20.3125rem;
-  height: 26.875rem;
+  width: 20rem;
+  height: 26rem;
   padding: .5em 1em;
 
   background-color: var(--cor-container);
@@ -596,9 +596,3 @@ footer {
   text-decoration: line-through var(--cor-principal-1) 3px;
 }
 
-@media screen and (min-width: 320px) {
-  .tela-backup {
-    width: 20rem;
-    height: 26rem;
-  }
-}
