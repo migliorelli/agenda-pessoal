@@ -8,3 +8,4 @@
 
 ![](https://img.shields.io/badge/EM-DESENVOLVIMENTO-blueviolet)
 
+acho que ela não sabe, mas eu fiz essa agenda pra ajudar minha namorada a se organizar :)
