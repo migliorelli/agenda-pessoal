@@ -408,8 +408,8 @@ body {
   display: flex;
 }
 
-.temas-botao {
-  position: absolute;
+.temas-botao, .backup-botao {
+  position: fixed;
   top: 10px;
   right: 10px;
   width: 2.5em;
@@ -429,6 +429,10 @@ body {
   transition: all 100ms ease-in-out 0s;
 }
 
+.backup-botao {
+  top: 55px;
+}
+
 .temas-botao:hover {
   padding: 0.3em;
 }
@@ -436,28 +440,6 @@ body {
 .temas-botao img {
   height: 80%;
   filter: var(--cor-filtro);
-}
-
-.backup-botao {
-  z-index: 2;
-  position: absolute;
-  top: 60px;
-  right: 10px;
-  width: 2.5em;
-  height: 2.5em;
-  background-color: var(--cor-principal-1);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-    100px 100px 80px rgba(0, 0, 0, 0.07);
-  transition: all 100ms ease-in-out 0s;
 }
 
 .backup-botao:hover {
@@ -480,9 +462,9 @@ body {
   position: fixed;
 
   top: 50%;
-  margin-top: -75%;
+  margin-top: -13rem;
   left: 50%;
-  margin-left: -40%;
+  margin-left: -10rem;
 
   z-index: 10;
   
@@ -494,7 +476,7 @@ body {
   flex-wrap: wrap;
 
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 
   12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
   22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
   41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
@@ -596,3 +578,12 @@ footer {
   text-decoration: line-through var(--cor-principal-1) 3px;
 }
 
+@media screen and (min-width: 510px){
+  .tela-backup {
+    width: 24rem;
+    height: 30rem;
+
+    margin-left: -12rem;
+    margin-top: -18rem;
+  }
+}
