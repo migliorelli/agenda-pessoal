@@ -189,7 +189,7 @@ var Agenda = class Agenda {
       throw "não tem dado";
     } else {
       for (let item in Dados) {
-        if (item === "tema" || item === "temaLabel") {
+        if (item === "tema") {
           continue;
         }
 
@@ -220,29 +220,46 @@ var Agenda = class Agenda {
       if (titulo == "tema") {
         this.mudarTema(item);
         continue;
-      } else if (titulo == "temaLabel") {
-        continue
       }
 
+      let anotacao = item["anotacao"];
       let data = item["data"];
+      let hora = item["hora"];
       let checado = item["checado"];
 
-      this.#incorporarItem(String(titulo), String(data), Boolean(checado));
+      this.#incorporarItem(
+        String(titulo),
+        String(anotacao),
+        String(data),
+        String(hora),
+        Boolean(checado)
+      );
     }
   }
 
-  #incorporarItem(titulo, data, checado) {
+  #incorporarItem(titulo, anotacao, data, hora, checado) {
     const novaDiv = document.createElement("div");
     const [anoDiv, mesDiv, diaDiv] = data.split("-");
     const dataDiv = `${diaDiv}/${mesDiv}/${anoDiv}`;
-    const taChecado = checado === false ? "" : "checked";
+    const anotacaoDiv =
+      anotacao === "" ? "" : `<div class="anotacao-div">${anotacao}</div>`;
+    const horaDiv = hora === "" ? "" : hora + ", ";
+    const taChecado = checado === true ? "checked" : "";
 
-    novaDiv.setAttribute("class", "item-background");
-    novaDiv.setAttribute("id", titulo);
+    if (checado ===  true) {
+      novaDiv.classList.toggle("checado")
+    }
+
+    novaDiv.classList.add("item-background");
+    novaDiv.setAttribute("id", titulo.replace(/\s/g,''));
+
     novaDiv.innerHTML = `   
-    <div class="agenda-item">
+    <div class="agenda-item-titulo">
       <h3>${titulo}</h3>
-      <span>${dataDiv}</span>
+    </div>
+    <div class="agenda-item-descricao">
+      ${anotacaoDiv}
+      <span>${horaDiv}${dataDiv}</span>
     </div>
     <div class="botao-remover">
       <button onclick="agenda.removerItem(this.value)" value="${titulo}">Remover</button>
@@ -258,9 +275,14 @@ var Agenda = class Agenda {
     this.agendaContainer.append(novaDiv);
   }
 
-  adicionarItem(titulo, data) {
-    this.dadosAgenda[titulo] = { data: data, checado: false };
-    this.#incorporarItem(titulo, data, false);
+  adicionarItem(titulo, anotacoes = "", data, hora = "") {
+    this.dadosAgenda[titulo] = {
+      anotacao: anotacoes,
+      data: data,
+      hora: hora,
+      checado: false,
+    };
+    this.#incorporarItem(titulo, anotacoes, data, hora, false);
 
     this.atualizarDados();
   }
@@ -288,10 +310,14 @@ var Agenda = class Agenda {
   armazenarCheck(checkbox) {
     for (let titulo in this.dadosAgenda) {
       if (String(checkbox.value) === String(titulo)) {
+        const stripTitulo = titulo.replace(/\s/g,'')
+        const div = this.agendaContainer.querySelector(`div#${stripTitulo}`)
         if (checkbox.checked) {
           this.dadosAgenda[titulo]["checado"] = true;
+          div.classList.add("checado")
         } else {
           this.dadosAgenda[titulo]["checado"] = false;
+          div.classList.remove("checado")
         }
       }
     }
@@ -318,23 +344,6 @@ var Agenda = class Agenda {
   mudarTema(tema = null) {
     const root = document.querySelector(":root");
     const temas = this.listaTemas;
-    const temaLabel = document.querySelector(".tema-atual div");
-    const nomesTemas = [
-      "escuro: Roxo",
-      "claro: Roxo",
-      "escuro: Amarelo",
-      "claro: Amarelo",
-      "escuro: Vermelho",
-      "claro: Vermelho",
-      "escuro: Rosa",
-      "claro:  Rosa",
-      "escuro: Azul",
-      "claro: Azul",
-      "escuro: Verde",
-      "claro: Verde",
-      "escuro: Retrô",
-      "claro: Retrô",
-    ];
 
     if (tema) {
       const temaIndex = Object.keys(temas).indexOf(tema);
@@ -346,8 +355,6 @@ var Agenda = class Agenda {
       }
 
       this.dadosAgenda["tema"] = tema;
-      this.dadosAgenda["temaLabel"] = nomesTemas[temaIndex];
-      temaLabel.innerHTML = `Tema ${nomesTemas[temaIndex]}`
 
       this.atualizarDados();
       return;
@@ -369,8 +376,6 @@ var Agenda = class Agenda {
     }
 
     this.dadosAgenda["tema"] = proximoTemaNome;
-    this.dadosAgenda["temaLabel"] = nomesTemas[proximoTemaIndex];
-    temaLabel.innerHTML = `Tema ${nomesTemas[proximoTemaIndex]}`
 
     this.atualizarDados();
   }

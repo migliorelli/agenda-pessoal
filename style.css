@@ -82,123 +82,6 @@ body {
   padding-bottom: 3em;
 }
 
-.escolher-materia {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.escolher-materia h3 {
-  color: var(--cor-texto);
-  padding: 0 0 0.5em 0;
-}
-
-.botao-menu {
-  background-color: var(--cor-principal-1);
-  padding: 1em 2.5em;
-  border-radius: 5px;
-  width: 20vw;
-  text-align: left;
-  color: var(--cor-texto-botoes);
-  cursor: pointer;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-    100px 100px 80px rgba(0, 0, 0, 0.07);
-}
-
-.materias {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 0;
-  text-align: left;
-  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-    100px 100px 80px rgba(0, 0, 0, 0.07);
-}
-
-.materias button {
-  padding: 1em 2.5em;
-  background-color: white;
-  color: var(--cor-texto);
-  width: 20vw;
-  text-align: left;
-
-  cursor: pointer;
-}
-.materias button[value="mtd"] {
-  color: var(--cor-principal-1);
-  font-weight: 700;
-  text-align: center;
-}
-
-.materias button:hover {
-  background-color: var(--cor-principal-2);
-}
-
-.botao-triangulo {
-  transform: rotate(270deg);
-}
-
-.triangulo-rotate {
-  transform: rotate(90deg);
-}
-
-.agenda-sala {
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  flex-direction: column;
-
-  gap: 1.5em;
-  padding-bottom: 3.5em;
-}
-
-.seção-materia {
-  width: 420px;
-  height: auto;
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-
-  padding: 1em 0em 2em 0em;
-  border-radius: 5px;
-
-  color: var(--cor-texto-container);
-  background-color: var(--cor-container);
-  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
-    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-    100px 100px 80px rgba(0, 0, 0, 0.07);
-}
-
-.seção-materia h2 {
-  padding-bottom: 0.5em;
-  text-decoration: underline dotted;
-}
-
-.mostrar {
-  display: flex;
-}
-
 .item {
   padding-bottom: 0.5em;
   width: 85%;
@@ -212,7 +95,7 @@ body {
   border-radius: 5px 5px 0px 0px;
 }
 
-.tema-atual {
+.data {
   display: flex;
   justify-content: center;
   width: 60%;
@@ -221,7 +104,7 @@ body {
   text-align: justify;
 }
 
-.tema-atual div {
+.data h3 {
   background-color: var(--cor-principal-1);
   color: var(--cor-texto-botoes);
   padding: 0.5em 1em;
@@ -236,7 +119,7 @@ body {
 }
 
 .agenda-pessoal {
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -252,7 +135,8 @@ body {
   margin-bottom: 0.5em;
 }
 
-.form-add-elemento input {
+.form-add-elemento input,
+.anotação {
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
@@ -278,17 +162,35 @@ body {
   font-size: 14px;
 }
 
+.input-name-div span strong {
+  color: red;
+}
+
 .input-name-div input {
   background: var(--cor-principal-2);
   color: var(--cor-texto-botoes);
-  padding: 0.5em;
+  padding: 0.5em 1em;
 
   border-radius: 5px 5px 0 0;
   width: 100%;
   height: 30px;
 }
 
-.input-div {
+.anotação {
+  resize: none;
+  width: 310px;
+  height: 50px;
+  padding: 0.5em 1em;
+  margin: -0.5em 0;
+
+  background-color: var(--cor-principal-2);
+  color: var(--cor-texto-botoes);
+
+  font-weight: 500;
+  font-family: "Nunito", sans-serif;
+}
+
+.data-submit-div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -297,33 +199,43 @@ body {
   width: 100%;
 }
 
-.input-div input[type="date"] {
-  padding: 0.5em;
-  width: 40%;
+.data-submit-div input.data {
+  padding: 0.5em 1em;
+  width: 50%;
   height: 30px;
-  border-radius: 0 0 0 5px;
 
   background: var(--cor-principal-2);
   color: var(--cor-texto-botoes);
 }
 
-.input-div input[type="submit"] {
+.data-submit-div input.hora {
+  padding: 0.5em 1em;
+  width: 50%;
+  height: 30px;
+  background: var(--cor-principal-2);
+  color: var(--cor-texto-botoes);
+}
+
+.data-submit-div input[type="submit"] {
   cursor: pointer;
   background: var(--cor-principal-1);
   color: var(--cor-texto-botoes);
-  width: 60%;
+  width: 100%;
   height: 30px;
-  border-radius: 0 0 5px 0;
+  border-radius: 0 0 5px 5px;
 }
 
 ::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--cor-texto-botoes);
+  font-weight: 500;
+  font-family: "Nunito", sans-serif;
 }
 
 ::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;
 }
+
 .erro {
   display: none;
   transform: translateY(-30px);
@@ -331,6 +243,7 @@ body {
   opacity: 0;
   padding: 0.5em 0 0 0;
   transition: all 200ms linear;
+  text-align: center;
 }
 
 .mostrar-erro {
@@ -349,7 +262,6 @@ body {
 
 .item-background {
   width: 420px;
-  height: auto;
 
   display: flex;
   justify-content: space-evenly;
@@ -368,7 +280,7 @@ body {
     100px 100px 80px rgba(0, 0, 0, 0.07);
 }
 
-.agenda-item {
+.agenda-item-descricao {
   width: 65%;
 
   display: flex;
@@ -379,8 +291,25 @@ body {
   color: var(--cor-texto-container);
 }
 
-.limpar-agenda {
-  display: none;
+.agenda-item-titulo {
+  padding: 0 0 .5em .5em;
+  width: 100%;
+
+  color: var(--cor-principal-1);
+}
+
+.agenda-item-titulo h3{
+  font-size: 22px;
+}
+
+.agenda-item-descricao div {
+  word-break: break-word;
+}
+
+.agenda-item-descricao span {
+  font-weight: 700;
+  color: var(--cor-principal-1);
+  text-decoration: underline var(--cor-principal-2) 2px;
 }
 
 .limpar-agenda button {
@@ -434,8 +363,9 @@ body {
 .checkmark {
   position: absolute;
   left: 0;
-  height: 25px;
-  width: 25px;
+  top: -3px;
+  height: 28.31px;
+  width: 28.31px;
   background-color: var(--cor-principal-2);
   border-radius: 5px;
 }
@@ -460,9 +390,9 @@ body {
 
 .checkbox-label .checkmark::after {
   left: 10px;
-  top: 6px;
-  width: 5px;
-  height: 10px;
+  top: 2px;
+  width: 10px;
+  height: 20px;
   border: solid white;
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
@@ -499,6 +429,10 @@ body {
   background-color: var(--cor-principal-1);
   border-radius: 50%;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   cursor: pointer;
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
@@ -519,10 +453,15 @@ footer {
   justify-content: center;
 
   color: var(--cor-texto);
-  margin: 0 0 .5em 0;
+  margin: 0 0 0.5em 0;
 
-  position:absolute;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.checado .agenda-item-titulo,
+.checado .agenda-item-descricao .anotacao-div{
+  text-decoration: line-through var(--cor-principal-1) 3px;
 }

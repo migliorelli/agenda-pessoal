@@ -1,5 +1,5 @@
 const hoje = new Date().toLocaleDateString("pt-br").slice(0, -5);
-const dataHeader = document.querySelector(".hoje");
+const dataHeader = document.querySelector(".data h3");
 dataHeader.innerHTML = hoje;
 
 const headerBotao = document.querySelector(".mudar-agenda-btn");
@@ -30,7 +30,9 @@ botaoSubmit.addEventListener("click", () => {
   erro.classList.remove("mostrar-erro");
 
   const titulo = formulario.querySelector(".titulo").value;
+  const anotacoes = formulario.querySelector(".anotação").value;
   const data = formulario.querySelector(".data").value;
+  const hora = formulario.querySelector(".hora").value;
 
   if (agenda.itemExiste(titulo)) {
     mostrarErro("Agendamento já existe.");
@@ -44,11 +46,15 @@ botaoSubmit.addEventListener("click", () => {
   } else {
     erro.classList.remove("mostrar-erro");
 
-    String(data);
     String(titulo);
-    agenda.adicionarItem(titulo, data);
+    String(anotacoes);
+    String(data);
+    String(hora);
+    agenda.adicionarItem(titulo, anotacoes, data, hora);
 
     formulario.querySelector(".titulo").value = "";
+    formulario.querySelector(".anotação").value = "";
     formulario.querySelector(".data").value = "";
+    formulario.querySelector(".hora").value = "";
   }
 });
