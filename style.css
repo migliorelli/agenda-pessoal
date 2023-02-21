@@ -1,16 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;500;600;700;800;900&display=swap");
 
 :root {
-  --cor-fundo: #28243c;
-  --cor-principal-1: #7949dd;
-  --cor-principal-2: #b19ae4;
-  --cor-principal-3: #8f06ff67;
-  --cor-texto: white;
-  --cor-texto-botoes: white;
-  --cor-texto-container: black;
-  --cor-container: white;
-  --cor-filtro: invert(13%) sepia(25%) saturate(864%) hue-rotate(210deg)
-    brightness(96%) contrast(96%);
+  --cor-fundo: ;
+  --cor-principal-1: ;
+  --cor-principal-2: ;
+  --cor-principal-3: ;
+  --cor-texto: ;
+  --cor-texto-botoes: ;
+  --cor-texto-container: ;
+  --cor-container: ;
+  --cor-filtro: ;
 }
 
 .testeeeee {
@@ -169,9 +168,9 @@ body {
 .input-name-div input {
   background: var(--cor-principal-2);
   color: var(--cor-texto-botoes);
-  padding: 0.5em 1em;
-
+  padding: 1em;
   border-radius: 5px 5px 0 0;
+
   width: 100%;
   height: 30px;
 }
@@ -292,13 +291,13 @@ body {
 }
 
 .agenda-item-titulo {
-  padding: 0 0 .5em .5em;
+  padding: 0 0 0.5em 0.5em;
   width: 100%;
 
   color: var(--cor-principal-1);
 }
 
-.agenda-item-titulo h3{
+.agenda-item-titulo h3 {
   font-size: 22px;
 }
 
@@ -422,8 +421,8 @@ body {
 
 .temas-botao {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   width: 3em;
   height: 3em;
   background-color: var(--cor-principal-1);
@@ -440,6 +439,12 @@ body {
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
     41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
     100px 100px 80px rgba(0, 0, 0, 0.07);
+
+  transition: all 100ms ease-in-out 0s;
+}
+
+.temas-botao:hover {
+  padding: 0.3em;
 }
 
 .temas-botao img {
@@ -462,6 +467,6 @@ footer {
 }
 
 .checado .agenda-item-titulo,
-.checado .agenda-item-descricao .anotacao-div{
+.checado .agenda-item-descricao .anotacao-div {
   text-decoration: line-through var(--cor-principal-1) 3px;
 }
