@@ -1,15 +1,14 @@
-const hoje = new Date().toLocaleDateString("pt-br").slice(0, -5);
-const dataHeader = document.querySelector(".data h3");
+let hoje = new Date().toLocaleDateString("pt-br").slice(0, -5),
+  dataHeader = document.querySelector(".data h3");
 dataHeader.innerHTML = hoje;
 
-const headerBotao = document.querySelector(".mudar-agenda-btn");
-const agendaSala = document.querySelector(".agenda-sala");
-const agendaPessoal = document.querySelector(".agenda-pessoal");
-const limparBotao = document.querySelector(".limpar-agenda");
-
-const agendaFormulario = document.querySelector(".agenda-pessoal");
-const agenda = new Agenda(agendaFormulario);
-const formulario = document.querySelector(".form-add-elemento");
+let headerBotao = document.querySelector(".mudar-agenda-btn"),
+  agendaSala = document.querySelector(".agenda-sala"),
+  agendaPessoal = document.querySelector(".agenda-pessoal"),
+  limparBotao = document.querySelector(".limpar-agenda"),
+  agendaFormulario = document.querySelector(".agenda-pessoal"),
+  agenda = new Agenda(agendaFormulario),
+  formulario = document.querySelector(".form-add-elemento");
 
 agenda.carregarDados();
 agenda.iniciarAgenda();
@@ -29,10 +28,10 @@ botaoSubmit.addEventListener("click", () => {
   let erro = document.querySelector(".erro");
   erro.classList.remove("mostrar-erro");
 
-  const titulo = formulario.querySelector(".titulo").value;
-  const anotacoes = formulario.querySelector(".anotação").value;
-  const data = formulario.querySelector(".data").value;
-  const hora = formulario.querySelector(".hora").value;
+  let titulo = formulario.querySelector(".titulo").value,
+    anotacoes = formulario.querySelector(".anotação").value,
+    data = formulario.querySelector(".data").value,
+    hora = formulario.querySelector(".hora").value;
 
   if (agenda.itemExiste(titulo)) {
     mostrarErro("Agendamento já existe.");

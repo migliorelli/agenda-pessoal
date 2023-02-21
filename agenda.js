@@ -176,7 +176,7 @@ var Agenda = class Agenda {
     };
   }
 
-  carregarDados(tema = "roxo") {
+  carregarDados(tema = "roxoEscuro") {
     if (window.localStorage.length == 0) {
       localStorage.setItem("MIGLIORELLI@agenda", `{tema: "${tema}"}`);
       this.definirDados({ tema: tema });
@@ -184,74 +184,65 @@ var Agenda = class Agenda {
     }
 
     let Dados = JSON.parse(localStorage.getItem("MIGLIORELLI@agenda"));
+    if (Dados == null) throw "não tem dado";
 
-    if (Dados == null) {
-      throw "não tem dado";
-    } else {
-      for (let item in Dados) {
-        if (item === "tema") {
-          continue;
-        }
+    for (let item in Dados) {
+      if (item === "tema") continue;
 
-        const checado = Object.keys(Dados[[item]])[1];
-        if (!(checado in Dados[item])) {
-          Dados[item]["checado"] = false;
-        }
+      let checado = Object.keys(Dados[[item]])[1];
+      if (!(checado in Dados[item])) {
+        Dados[item]["checado"] = false;
       }
-
-      this.definirDados(Dados);
     }
+
+    this.definirDados(Dados);
   }
 
   definirDados(dados) {
-    if (!dados) {
-      throw "Não tem dado suficiente nessa porra :D";
-    }
-
+    if (!dados) throw "Não tem dado suficiente nessa porra :D";
     this.dadosAgenda = dados;
   }
 
   iniciarAgenda() {
     const temDados = Object.keys(this.dadosAgenda).length > 0;
-    if (!temDados) return;
+    if (!temDados) { return 
+    } else {
+      for (let titulo in this.dadosAgenda) {
+        let item = this.dadosAgenda[titulo];
+        if (titulo == "tema") {
+          this.mudarTema(item);
+          continue;
+        }
 
-    for (let titulo in this.dadosAgenda) {
-      let item = this.dadosAgenda[titulo];
-      if (titulo == "tema") {
-        this.mudarTema(item);
-        continue;
+        let anotacao = item["anotacao"],
+        data = item["data"],
+        hora = item["hora"],
+        checado = item["checado"];
+
+        this.#incorporarItem(
+          String(titulo),
+          String(anotacao),
+          String(data),
+          String(hora),
+          Boolean(checado)
+        );
       }
-
-      let anotacao = item["anotacao"];
-      let data = item["data"];
-      let hora = item["hora"];
-      let checado = item["checado"];
-
-      this.#incorporarItem(
-        String(titulo),
-        String(anotacao),
-        String(data),
-        String(hora),
-        Boolean(checado)
-      );
     }
   }
 
   #incorporarItem(titulo, anotacao, data, hora, checado) {
-    const novaDiv = document.createElement("div");
-    const [anoDiv, mesDiv, diaDiv] = data.split("-");
-    const dataDiv = `${diaDiv}/${mesDiv}/${anoDiv}`;
-    const anotacaoDiv =
-      anotacao === "" ? "" : `<div class="anotacao-div">${anotacao}</div>`;
-    const horaDiv = hora === "" ? "" : hora + ", ";
-    const taChecado = checado === true ? "checked" : "";
+    let novaDiv = document.createElement("div"),
+      [anoDiv, mesDiv, diaDiv] = data.split("-"),
+      dataDiv = `${diaDiv}/${mesDiv}/${anoDiv}`,
+      anotacaoDiv =
+        anotacao === "" ? "" : `<div class="anotacao-div">${anotacao}</div>`,
+      horaDiv = hora === "" ? "" : hora + ", ",
+      taChecado = checado === true ? "checked" : "";
 
-    if (checado ===  true) {
-      novaDiv.classList.toggle("checado")
-    }
+    if (checado) novaDiv.classList.toggle("checado");
 
     novaDiv.classList.add("item-background");
-    novaDiv.setAttribute("id", titulo.replace(/\s/g,''));
+    novaDiv.setAttribute("id", titulo.replace(/\s/g, ""));
 
     novaDiv.innerHTML = `   
     <div class="agenda-item-titulo">
@@ -288,18 +279,12 @@ var Agenda = class Agenda {
   }
 
   itemExiste(tituloItem) {
-    if (tituloItem in this.dadosAgenda) {
-      return true;
-    }
-
-    return false;
+    return tituloItem in this.dadosAgenda;
   }
 
   removerItem(item) {
     for (let titulo in this.dadosAgenda) {
-      if (String(titulo) == String(item)) {
-        delete this.dadosAgenda[titulo];
-      }
+      if (String(titulo) == String(item)) delete this.dadosAgenda[titulo];
     }
 
     this.agendaContainer.innerHTML = "";
@@ -308,20 +293,19 @@ var Agenda = class Agenda {
   }
 
   armazenarCheck(checkbox) {
-    for (let titulo in this.dadosAgenda) {
+    for (let titulo in this.dadosAgenda)
       if (String(checkbox.value) === String(titulo)) {
-        const stripTitulo = titulo.replace(/\s/g,'')
-        const div = this.agendaContainer.querySelector(`div#${stripTitulo}`)
+        let stripTitulo = titulo.replace(/\s/g, ""),
+          div = this.agendaContainer.querySelector(`div#${stripTitulo}`);
+
         if (checkbox.checked) {
           this.dadosAgenda[titulo]["checado"] = true;
-          div.classList.add("checado")
+          div.classList.add("checado");
         } else {
           this.dadosAgenda[titulo]["checado"] = false;
-          div.classList.remove("checado")
+          div.classList.remove("checado");
         }
       }
-    }
-
     this.atualizarDados();
   }
 
@@ -342,38 +326,34 @@ var Agenda = class Agenda {
   }
 
   mudarTema(tema = null) {
-    const root = document.querySelector(":root");
-    const temas = this.listaTemas;
+    let root = document.querySelector(":root"),
+      temas = this.listaTemas;
 
     if (tema) {
-      const temaIndex = Object.keys(temas).indexOf(tema);
-      const temaNome = Object.keys(temas)[temaIndex];
-      const colocarTema = temas[temaNome];
+      let temaIndex = Object.keys(temas).indexOf(tema),
+        temaNome = Object.keys(temas)[temaIndex],
+        colocarTema = temas[temaNome];
 
-      for (let cor in colocarTema) {
+      for (let cor in colocarTema)
         root.style.setProperty(cor, colocarTema[cor]);
-      }
 
       this.dadosAgenda["tema"] = tema;
-
       this.atualizarDados();
       return;
     }
 
-    const temaAtual = String(this.dadosAgenda["tema"]);
-    const temaAtualIndex = Object.keys(temas).indexOf(temaAtual);
+    let temaAtual = String(this.dadosAgenda["tema"]),
+      temaAtualIndex = Object.keys(temas).indexOf(temaAtual),
+      proximoTemaIndex =
+        temaAtualIndex + 1 > Object.keys(temas).length - 1
+          ? 0
+          : temaAtualIndex + 1,
+      proximoTemaNome = Object.keys(temas)[proximoTemaIndex],
+      proximoTema = temas[proximoTemaNome];
 
-    const proximoTemaIndex =
-      temaAtualIndex + 1 > Object.keys(temas).length - 1
-        ? 0
-        : temaAtualIndex + 1;
-    const proximoTemaNome = Object.keys(temas)[proximoTemaIndex];
-    const proximoTema = temas[proximoTemaNome];
     this.dadosAgenda["tema"] = proximoTemaNome;
 
-    for (let cor in proximoTema) {
-      root.style.setProperty(cor, proximoTema[cor]);
-    }
+    for (let cor in proximoTema) root.style.setProperty(cor, proximoTema[cor]);
 
     this.dadosAgenda["tema"] = proximoTemaNome;
 
