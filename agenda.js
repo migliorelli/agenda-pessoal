@@ -367,8 +367,7 @@ var Agenda = class Agenda {
     e.innerHTML = "Dados copiados"
   }
 
-  fazerBackup(e){
-    e.innerHTML = "Backup feito"
+  fazerBackup(){
     this.limparDados()
 
     let textField = document.querySelector(".novos-dados-txt")

@@ -18,12 +18,11 @@
         Copiar dados
       </div>
       <div class="backup-descricao">
-        <span>Agora, em outro dispositivo, cole os dados que você copiou no campo a seguir, e clique em <span>fazer backup</span></span>
+        <span>Agora, em outro dispositivo, cole os dados que você copiou no campo a seguir, e clique <span onclick="agenda.fazerBackup()">aqui</span> para fazer o backup</span>
       </div>
       <div class="novo-json">
         <textarea class="novos-dados-txt" name="novo-json" id="novo-json" placeholder="Cole aqui os seus dados..." spellcheck="false"></textarea>
       </div>
-      <div class="fazer-backup" onclick="agenda.fazerBackup(this)">Fazer backup</div>
     </div>
     <div class="backup-botao" onclick="toogleTelaBackup()">
       <img src="assets/backup.svg" alt="fazer-backup">

@@ -471,7 +471,7 @@ body {
 
 .tela-backup {
   width: 80%;
-  height: 80%;
+  height: 60%;
   padding: .5em 1em;
 
   background-color: var(--cor-container);
@@ -555,17 +555,6 @@ body {
   width: 90%;
 
   resize: none;
-}
-
-.fazer-backup {
-    cursor: pointer;
-    background-color: var(--cor-principal-1);
-    color: var(--cor-texto-botoes);
-  
-    border-radius: 10px;
-    padding: 1em 2em;
-
-  
 }
 
 @keyframes backupIn {
