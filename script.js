@@ -2,11 +2,7 @@ let hoje = new Date().toLocaleDateString("pt-br").slice(0, -5),
   dataHeader = document.querySelector(".data h3");
 dataHeader.innerHTML = hoje;
 
-let headerBotao = document.querySelector(".mudar-agenda-btn"),
-  agendaSala = document.querySelector(".agenda-sala"),
-  agendaPessoal = document.querySelector(".agenda-pessoal"),
-  limparBotao = document.querySelector(".limpar-agenda"),
-  agendaFormulario = document.querySelector(".agenda-pessoal"),
+let agendaFormulario = document.querySelector(".agenda-pessoal"),
   agenda = new Agenda(agendaFormulario),
   formulario = document.querySelector(".form-add-elemento");
 
@@ -58,18 +54,17 @@ botaoSubmit.addEventListener("click", () => {
   }
 });
 
-let telaBackup = document.querySelector(".tela-backup")
+function toggleCard(card = card.target) {
+  const cardId = card.id
+  const div = document.querySelector(`div.${cardId}`)
 
-function toogleTelaBackup() {
-  if (telaBackup.classList.contains("mostrar-backup")) {
-    telaBackup.style.opacity = "0";
-    telaBackup.style.animation = "backupOut 0.3s ease-in-out";
-    telaBackup.classList.toggle("mostrar-backup")
-
+  if (div.classList.contains("mostrar-card")) {
+    div.style.opacity = "0";
+    div.style.animation = "cardOut 0.3s ease-in-out";
+    div.classList.toggle("mostrar-card");
   } else {
-    telaBackup.style.opacity = "1";
-    telaBackup.style.animation = "backupIn 0.3s ease-in-out";
-    telaBackup.classList.toggle("mostrar-backup")
+    div.style.opacity = "1";
+    div.style.animation = "cardIn 0.3s ease-in-out";
+    div.classList.toggle("mostrar-card");
   }
-
 }

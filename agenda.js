@@ -191,7 +191,7 @@ var Agenda = class Agenda {
 
       let checado = Object.keys(Dados[[item]])[1];
       if (!(checado in Dados[item])) {
-        Dados[item]["checado"] = false;
+        Dados[item].checado = false;
       }
     }
 
@@ -214,10 +214,7 @@ var Agenda = class Agenda {
           continue;
         }
 
-        let anotacao = item["anotacao"],
-        data = item["data"],
-        hora = item["hora"],
-        checado = item["checado"];
+        let { anotacao, data, hora, checado } = item
 
         this.#incorporarItem(
           String(titulo),
@@ -299,10 +296,10 @@ var Agenda = class Agenda {
           div = this.agendaContainer.querySelector(`div#${stripTitulo}`);
 
         if (checkbox.checked) {
-          this.dadosAgenda[titulo]["checado"] = true;
+          this.dadosAgenda[titulo].checado = true;
           div.classList.add("checado");
         } else {
-          this.dadosAgenda[titulo]["checado"] = false;
+          this.dadosAgenda[titulo].checado = false;
           div.classList.remove("checado");
         }
       }
@@ -316,7 +313,7 @@ var Agenda = class Agenda {
   }
 
   limparDados() {
-    const temaAtual = this.dadosAgenda["tema"];
+    const temaAtual = this.dadosAgenda.tema;
     localStorage.clear();
     this.agendaContainer.innerHTML = "";
 
@@ -337,12 +334,13 @@ var Agenda = class Agenda {
       for (let cor in colocarTema)
         root.style.setProperty(cor, colocarTema[cor]);
 
-      this.dadosAgenda["tema"] = tema;
+      this.dadosAgenda.tema = tema;
       this.atualizarDados();
       return;
     }
 
-    let temaAtual = String(this.dadosAgenda["tema"]),
+    let 
+      temaAtual = String(this.dadosAgenda.tema),
       temaAtualIndex = Object.keys(temas).indexOf(temaAtual),
       proximoTemaIndex =
         temaAtualIndex + 1 > Object.keys(temas).length - 1
@@ -351,11 +349,11 @@ var Agenda = class Agenda {
       proximoTemaNome = Object.keys(temas)[proximoTemaIndex],
       proximoTema = temas[proximoTemaNome];
 
-    this.dadosAgenda["tema"] = proximoTemaNome;
+    this.dadosAgenda.tema = proximoTemaNome;
 
     for (let cor in proximoTema) root.style.setProperty(cor, proximoTema[cor]);
 
-    this.dadosAgenda["tema"] = proximoTemaNome;
+    this.dadosAgenda.tema = proximoTemaNome;
 
     this.atualizarDados();
   }
@@ -381,3 +379,4 @@ var Agenda = class Agenda {
     this.atualizarDados()
   }
 };
+

@@ -24,7 +24,33 @@
         <textarea class="novos-dados-txt" name="novo-json" id="novo-json" placeholder="Cole aqui os seus dados..." spellcheck="false"></textarea>
       </div>
     </div>
-    <div class="backup-botao" onclick="toogleTelaBackup()">
+    <div class="tela-config">
+      <form class="config-form">
+        <h1>Configurações</h1>
+        <div class="config-font">
+          <h2>Fonte</h2>
+          <div class="config-font-fontes">
+            <div class="config-font-nunito">
+              <input type="radio" name="nunito" id="nunito" value="nunito">
+              <label for="radio">Nunito</label>
+            </div>
+            <div class="config-font-comicsans">
+              <input type="radio" name="comicsnas" id="comicsnas" value="comicsans">
+              <label for="comicsans">Comic Sans</label>
+            </div>
+            <div class="config-font-helveltica">
+              <input type="radio" name="helveltica" id="helveltica" value="helveltica">
+              <label for="helveltica">Helveltica</label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    </div>
+    <div class="config-botao" id="tela-config" onclick="toggleCard(this)">
+      <img src="assets/config.svg" alt="config">
+    </div>
+    <div class="backup-botao" id="tela-backup" onclick="toggleCard(this)">
       <img src="assets/backup.svg" alt="fazer-backup">
     </div>
     <div class="temas-botao" onclick="agenda.mudarTema()">
