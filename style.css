@@ -11,6 +11,7 @@
   --cor-container: #fff;
   --cor-filtro: invert(13%) sepia(25%) saturate(864%) hue-rotate(210deg)
     brightness(96%) contrast(96%);
+  --fonte: "Nunito", sans-serif;
 }
 
 .testeeeee {
@@ -40,9 +41,7 @@
 
 body {
   font-weight: 500;
-  font-family: "Nunito", sans-serif;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--fonte);
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
 
@@ -188,7 +187,7 @@ body {
   background-color: var(--cor-principal-2);
   color: var(--cor-texto-botoes);
   font-weight: 500;
-  font-family: "Nunito", sans-serif;
+  font-family: var(--fonte);
 }
 
 .data-submit-div {
@@ -227,7 +226,7 @@ body {
 ::-webkit-input-placeholder {
   color: var(--cor-texto-botoes);
   font-weight: 500;
-  font-family: "Nunito", sans-serif;
+  font-family: var(--fonte);
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -410,7 +409,7 @@ body {
   display: flex;
 }
 
-.temas-botao, .backup-botao, .config-botao {
+.botao-flutuante {
   position: fixed;
   top: 10px;
   right: 10px;
@@ -456,13 +455,13 @@ body {
   filter: var(--cor-filtro);
 }
 
-.config-botao:hover, .temas-botao:hover, .backup-botao:hover {
+.botao-flutuante:hover {
   padding: 0.3em;
 }
 
 .tela-backup, .tela-config {
-  width: 20rem;
-  height: 26rem;
+  width: 20em;
+  height: 26em;
   padding: .5em 1em;
 
   background-color: var(--cor-container);
@@ -561,15 +560,6 @@ body {
     opacity: 1;
   }
 }
-
-@keyframes cardOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
   
 footer {
   display: flex;
@@ -587,10 +577,6 @@ footer {
   text-decoration: line-through var(--cor-principal-1) 3px;
 }
 
-.tela-config h1{
-
-}
-
 .tela-config .config-form {
   display: flex;
   flex-direction: column;
@@ -598,36 +584,100 @@ footer {
   align-items: center;
   gap: 1em;
 
-
+  width: 100%;
 }
 
 .tela-config .config-form h1 {
-  color: var(--cor-principal-1);
+  color: black;
   text-decoration: underline var(--cor-principal-1) 3px;
+  font-size: 35px;
 
 }
 
-.tela-config .config-form .config-font {
-  background-color: #ffdcdc;
-  padding: 1em 6.5em;
+.tela-config .config-form .config-section {
+  padding: 1em 2em;
   border-radius: 15px;
 
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: center;
   flex-direction: column;
 }
 
-.tela-config .config-form .config-font h2 {
-  color: var(--cor-principal-2);
+.config-section-h2 {
+  color: var(--cor-principal-1);
   text-decoration: underline var(--cor-principal-2) 3px;
+  padding-bottom: .5em;
   align-self: center;
-  padding-bottom: .3em;
+  text-align: center;
 }
 
-.tela-config .config-form
+.config-usuario {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
 
-@media screen and (min-width: 510px){
+.config-usuario input {
+  color: var(--cor-texto-botoes);
+  width: 60%;
+  padding: .5em 1em;
+  border-radius: 5px;
+  background-color: var(--cor-principal-2);
+}
+
+.config-usuario input:focus {
+  background-color: var(--cor-principal-1);
+}
+
+.tela-config .config-form .config-font .config-font-fontes {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: .5em;
+  color: var(--cor-texto-botoes);
+}
+
+.config-radio-label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.config-radio-label input {
+  display: none;
+  cursor: pointer;
+}
+
+.radio-config-button {
+  background-color: var(--cor-principal-2);
+  border-radius: 5px;
+  text-align: center;
+
+  padding: .3em .5em;
+
+  width: 8em;
+}
+
+.config-radio-label:hover input ~ .radio-config-button {
+  background-color: var(--cor-principal-1);
+}
+
+.config-radio-label input:checked ~ .radio-config-button {
+  background-color: var(--cor-principal-1);
+}
+
+.tela-config .config-form .config-submit input {
+  cursor: pointer;
+  background-color: var(--cor-principal-1);
+  color: var(--cor-texto-botoes);
+
+  border-radius: 10px;
+  margin-top: 2em;
+  padding: 1em 3em;
+}
+
+@media screen and (min-width: 510px){ 
   .tela-backup, .tela-config {
     width: 24rem;
     height: 30rem;
@@ -635,4 +685,41 @@ footer {
     margin-left: -12rem;
     margin-top: -18rem;
   }
+}
+
+.config-usuario-layout {
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .3em
+}
+
+.config-usuario-layout .sexo-radio {
+  display: none;
+}
+
+.config-usuario-layout label {
+  color: var(--cor-texto-botoes);
+  background-color: var(--cor-principal-2);
+  font-size: 14px;
+  border-radius: 5px;
+  
+  width: 28.31px;
+  height: 28.31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.config-usuario-layout label:hover {
+  background-color: var(--cor-principal-1);
+  cursor: pointer ;
+}
+
+.config-usuario-layout .sxM:checked ~ label[class=M] {
+  background-color: var(--cor-principal-1);
+}
+.config-usuario-layout .sxF:checked ~ label[class=F] {
+  background-color: var(--cor-principal-1);
 }

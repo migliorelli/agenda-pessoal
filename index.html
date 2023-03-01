@@ -9,7 +9,7 @@
     <title>Agenda Pessoal</title>
   </head>
   <body>
-    <div class="tela-backup">
+    <div class="tela-backup tela-flutuante">
       <div class="backup-titulo">
         <h2>Sistema de backup</h2>
         <span>Para fazer o backup de seus dados, clique no <span>botão</span> abaixo para copiar o código de backup</span>
@@ -18,42 +18,55 @@
         Copiar dados
       </div>
       <div class="backup-descricao">
-        <span>Agora, em outro dispositivo, cole os dados que você copiou no campo a seguir, e clique <span onclick="agenda.fazerBackup()">aqui</span> para fazer o backup</span>
+        <span>Agora, em outro dispositivo, cole os dados que você copiou no campo a seguir, e clique <span class="backup-botao" id="tela-backup">aqui</span> para fazer o backup</span>
       </div>
       <div class="novo-json">
         <textarea class="novos-dados-txt" name="novo-json" id="novo-json" placeholder="Cole aqui os seus dados..." spellcheck="false"></textarea>
       </div>
     </div>
-    <div class="tela-config">
-      <form class="config-form">
+    <div class="tela-config tela-flutuante">
+      <div class="config-form" name="config-form" id="config-form">
         <h1>Configurações</h1>
-        <div class="config-font">
-          <h2>Fonte</h2>
-          <div class="config-font-fontes">
-            <div class="config-font-nunito">
-              <input type="radio" name="nunito" id="nunito" value="nunito">
-              <label for="radio">Nunito</label>
-            </div>
-            <div class="config-font-comicsans">
-              <input type="radio" name="comicsnas" id="comicsnas" value="comicsans">
-              <label for="comicsans">Comic Sans</label>
-            </div>
-            <div class="config-font-helveltica">
-              <input type="radio" name="helveltica" id="helveltica" value="helveltica">
-              <label for="helveltica">Helveltica</label>
-            </div>
+        <div class="config-usuario">
+          <h2 class="config-section-h2">Nome de Usuário</h2>
+          <div class="config-usuario-layout">
+            <input class="sexo-radio sxM" type="radio" name="config-usuario-genero" id="do" value="do">
+            <label class="M" for="do">do</label>
+            <input class="sexo-radio sxF" type="radio" name="config-usuario-genero" id="da" value=da>
+            <label class="F" for="da">da</label>
+            <input type="text" name="config-usuario" onchange='this.style.backgroundColor = "var(--cor-principal-1)"' id="usuario-input" placeholder="Escreva seu nome..." spellcheck="false" maxlength="18">
           </div>
         </div>
-      </form>
+        <div class="config-font">
+          <h2 class="config-section-h2">Fonte</h2>
+          <div class="config-font-fontes">
+            <label class="config-font-nunito config-radio-label">
+              <input type="radio" name="config-font" id='"Nunito", sans-serif' value='"Nunito", sans-serif'>
+              <div class="radio-config-button">Nunito</div>
+            </label>
+            <label class="config-font-comicsans config-radio-label">
+              <input type="radio" name="config-font" id='"Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif' value='"Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif'>
+              <div class="radio-config-button">Comic Sans</div>
+            </label>
+            <label class="config-font-helveltica config-radio-label">
+              <input type="radio" name="config-font" id="Arial, Helvetica, sans-serif" value="Arial, Helvetica, sans-serif">
+              <div class="radio-config-button">Helveltica</div>
+            </label>
+          </div>
+        </div>
+        <div class="config-submit">
+          <input class="config-salvar" id="tela-config" type="submit" value="Salvar">
+        </div>
+      </div>
     </div>
     </div>
-    <div class="config-botao" id="tela-config" onclick="toggleCard(this)">
+    <div class="config-botao botao-flutuante" id="tela-config" onclick="toggleCard(this)">
       <img src="assets/config.svg" alt="config">
     </div>
-    <div class="backup-botao" id="tela-backup" onclick="toggleCard(this)">
+    <div class="backup-botao botao-flutuante" id="tela-backup" onclick="toggleCard(this)">
       <img src="assets/backup.svg" alt="fazer-backup">
     </div>
-    <div class="temas-botao" onclick="agenda.mudarTema()">
+    <div class="temas-botao botao-flutuante" onclick="agenda.mudarTema()">
       <img src="assets/paleta.svg" alt="mudar-tema">
     </div>
     <header class="agenda-header">

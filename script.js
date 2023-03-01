@@ -1,10 +1,6 @@
-let hoje = new Date().toLocaleDateString("pt-br").slice(0, -5),
-  dataHeader = document.querySelector(".data h3");
-dataHeader.innerHTML = hoje;
-
-let agendaFormulario = document.querySelector(".agenda-pessoal"),
-  agenda = new Agenda(agendaFormulario),
-  formulario = document.querySelector(".form-add-elemento");
+const agendaFormulario = document.querySelector(".agenda-pessoal");
+const agenda = new Agenda(agendaFormulario);
+const formulario = document.querySelector(".form-add-elemento");
 
 agenda.carregarDados();
 agenda.iniciarAgenda();
@@ -21,50 +17,90 @@ function mostrarErro(mensagem) {
 const botaoSubmit = document.querySelector(".botao-submit");
 
 botaoSubmit.addEventListener("click", () => {
-  let erro = document.querySelector(".erro");
+  const erro = document.querySelector(".erro");
   erro.classList.remove("mostrar-erro");
 
-  let titulo = formulario.querySelector(".titulo").value,
-    anotacoes = formulario.querySelector(".anotação").value,
-    data = formulario.querySelector(".data").value,
-    hora = formulario.querySelector(".hora").value;
+  const titulo = formulario.querySelector(".titulo");
+  const anotacoes = formulario.querySelector(".anotação");
+  const data = formulario.querySelector(".data");
+  const hora = formulario.querySelector(".hora");
 
-  if (agenda.itemExiste(titulo)) {
+  const tituloValue = titulo.value;
+  const anotacoesValue = anotacoes.value;
+  const dataValue = data.value;
+  const horaValue = hora.value;
+
+  if (agenda.itemExiste(tituloValue)) {
     mostrarErro("Agendamento já existe.");
     return false;
-  } else if (!titulo) {
+  } else if (!tituloValue) {
     mostrarErro("Você precisa colocar um título.");
     return false;
-  } else if (!data) {
-    mostrarErro("Você precisa definir uma data.");
+  } else if (!dataValue) {
+    mostrarErro("Você precisa definir uma dataValue.");
     return false;
   } else {
     erro.classList.remove("mostrar-erro");
 
-    String(titulo);
-    String(anotacoes);
-    String(data);
-    String(hora);
-    agenda.adicionarItem(titulo, anotacoes, data, hora);
+    String(tituloValue);
+    String(anotacoesValue);
+    String(dataValue);
+    String(horaValue);
+    agenda.adicionarItem(tituloValue, anotacoesValue, dataValue, horaValue);
 
-    formulario.querySelector(".titulo").value = "";
-    formulario.querySelector(".anotação").value = "";
-    formulario.querySelector(".data").value = "";
-    formulario.querySelector(".hora").value = "";
+    titulo.value = "";
+    anotacoes.value = "";
+    data.value = "";
+    hora.value = "";
   }
 });
 
-function toggleCard(card = card.target) {
-  const cardId = card.id
-  const div = document.querySelector(`div.${cardId}`)
+function toggleCard(botao) {
+  const cardId = botao.id;
+  const div = document.querySelector(`div.${cardId}`);
+  const cards = document.querySelectorAll(".tela-flutuante")
+
+  cards.forEach(card => {
+    if (!card.classList.contains(botao.id)) {
+      card.classList.remove("mostrar-card")
+    }
+  })
 
   if (div.classList.contains("mostrar-card")) {
     div.style.opacity = "0";
-    div.style.animation = "cardOut 0.3s ease-in-out";
     div.classList.toggle("mostrar-card");
-  } else {
-    div.style.opacity = "1";
-    div.style.animation = "cardIn 0.3s ease-in-out";
-    div.classList.toggle("mostrar-card");
+    return;
   }
+
+  div.style.opacity = "1";
+  div.style.animation = "cardIn 0.3s ease-in-out";
+  div.classList.toggle("mostrar-card");
 }
+
+const formularioConfig = document.querySelector(".config-form");
+const salvarConfig = document.querySelector(".config-salvar");
+
+salvarConfig.addEventListener("click", (botao) => {
+  let usuario = formularioConfig.querySelector(
+    '.config-usuario input[type="text"]'
+  );
+  usuario = usuario.value ? usuario.value : false;
+
+  let genero = formularioConfig.querySelector(
+    'input[name="config-usuario-genero"]:checked'
+  );
+  genero = genero ? genero.value : false;
+
+  let fonte = formularioConfig.querySelector(
+    'input[name="config-font"]:checked'
+  ).value;
+
+  agenda.definirConfig({ usuario, genero, fonte });
+  toggleCard(botao.target);
+});
+
+const botaoBackup = document.querySelector(".backup-botao");
+botaoBackup.addEventListener("click", (botao) => {
+  agenda.fazerBackup();
+  toggleCard(botao.target);
+});

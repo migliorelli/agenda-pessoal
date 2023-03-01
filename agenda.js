@@ -176,20 +176,33 @@ var Agenda = class Agenda {
     };
   }
 
-  carregarDados(tema = "roxoEscuro") {
+  carregarDados(
+    tema = "roxoEscuro",
+    usuario = false,
+    genero = "de",
+    fonte = '"Nunito", sans-serif'
+  ) {
     if (window.localStorage.length == 0) {
-      localStorage.setItem("MIGLIORELLI@agenda", `{tema: "${tema}"}`);
-      this.definirDados({ tema: tema });
+      localStorage.setItem(
+        "MIGLIORELLI@agenda",
+        `{tema: "${tema}", config: [${usuario}, ${genero}, ${fonte}]}`
+      );
+      this.definirDados({ tema: tema, config: [usuario, genero, fonte] });
       return;
     }
 
-    let Dados = JSON.parse(localStorage.getItem("MIGLIORELLI@agenda"));
+    const Dados = JSON.parse(localStorage.getItem("MIGLIORELLI@agenda"));
     if (Dados == null) throw "não tem dado";
+
+    if (!("config" in Dados)) {
+      Dados.config = [usuario, genero, fonte];
+    }
 
     for (let item in Dados) {
       if (item === "tema") continue;
+      if (item === "config") continue;
 
-      let checado = Object.keys(Dados[[item]])[1];
+      const checado = Object.keys(Dados[item])[1];
       if (!(checado in Dados[item])) {
         Dados[item].checado = false;
       }
@@ -205,36 +218,48 @@ var Agenda = class Agenda {
 
   iniciarAgenda() {
     const temDados = Object.keys(this.dadosAgenda).length > 0;
-    if (!temDados) { return 
-    } else {
-      for (let titulo in this.dadosAgenda) {
-        let item = this.dadosAgenda[titulo];
-        if (titulo == "tema") {
-          this.mudarTema(item);
-          continue;
-        }
+    if (!temDados) return;
 
-        let { anotacao, data, hora, checado } = item
+    const hoje = new Date().toLocaleDateString("pt-br").slice(0, -5);
+    const dataHeader = document.querySelector(".data h3");
+    dataHeader.innerHTML = hoje;
 
-        this.#incorporarItem(
-          String(titulo),
-          String(anotacao),
-          String(data),
-          String(hora),
-          Boolean(checado)
-        );
+    for (let titulo in this.dadosAgenda) {
+      const item = this.dadosAgenda[titulo];
+      if (titulo === "tema") {
+        this.mudarTema(item);
+        continue;
       }
+      if (titulo === "config") {
+        const usuario = this.dadosAgenda.config[0];
+        const genero = this.dadosAgenda.config[1];
+        const fonte = this.dadosAgenda.config[2];
+        const config = { usuario, genero, fonte };
+        this.definirConfig(config);
+
+        continue;
+      }
+
+      let { anotacao, data, hora, checado } = item;
+
+      this.#incorporarItem(
+        String(titulo),
+        String(anotacao),
+        String(data),
+        String(hora),
+        Boolean(checado)
+      );
     }
   }
 
   #incorporarItem(titulo, anotacao, data, hora, checado) {
-    let novaDiv = document.createElement("div"),
-      [anoDiv, mesDiv, diaDiv] = data.split("-"),
-      dataDiv = `${diaDiv}/${mesDiv}/${anoDiv}`,
-      anotacaoDiv =
-        anotacao === "" ? "" : `<div class="anotacao-div">${anotacao}</div>`,
-      horaDiv = hora === "" ? "" : hora + ", ",
-      taChecado = checado === true ? "checked" : "";
+    const novaDiv = document.createElement("div");
+    let [anoDiv, mesDiv, diaDiv] = data.split("-");
+    const dataDiv = `${diaDiv}/${mesDiv}/${anoDiv}`;
+    const anotacaoDiv =
+      anotacao === "" ? "" : `<div class="anotacao-div">${anotacao}</div>`;
+    const horaDiv = hora === "" ? "" : hora + ", ";
+    const taChecado = checado === true ? "checked" : "";
 
     if (checado) novaDiv.classList.toggle("checado");
 
@@ -263,14 +288,14 @@ var Agenda = class Agenda {
     this.agendaContainer.append(novaDiv);
   }
 
-  adicionarItem(titulo, anotacoes = "", data, hora = "") {
+  adicionarItem(titulo, anotacao = "", data, hora = "") {
     this.dadosAgenda[titulo] = {
-      anotacao: anotacoes,
+      anotacao: anotacao,
       data: data,
       hora: hora,
       checado: false,
     };
-    this.#incorporarItem(titulo, anotacoes, data, hora, false);
+    this.#incorporarItem(titulo, anotacao, data, hora, false);
 
     this.atualizarDados();
   }
@@ -292,8 +317,8 @@ var Agenda = class Agenda {
   armazenarCheck(checkbox) {
     for (let titulo in this.dadosAgenda)
       if (String(checkbox.value) === String(titulo)) {
-        let stripTitulo = titulo.replace(/\s/g, ""),
-          div = this.agendaContainer.querySelector(`div#${stripTitulo}`);
+        const stripTitulo = titulo.replace(/\s/g, "");
+        const div = this.agendaContainer.querySelector(`div#${stripTitulo}`);
 
         if (checkbox.checked) {
           this.dadosAgenda[titulo].checado = true;
@@ -322,14 +347,14 @@ var Agenda = class Agenda {
     this.iniciarAgenda();
   }
 
-  mudarTema(tema = null) {
-    let root = document.querySelector(":root"),
-      temas = this.listaTemas;
+  mudarTema(tema = false) {
+    const root = document.querySelector(":root");
+    const temas = this.listaTemas;
 
     if (tema) {
-      let temaIndex = Object.keys(temas).indexOf(tema),
-        temaNome = Object.keys(temas)[temaIndex],
-        colocarTema = temas[temaNome];
+      const temaIndex = Object.keys(temas).indexOf(tema);
+      const temaNome = Object.keys(temas)[temaIndex];
+      const colocarTema = temas[temaNome];
 
       for (let cor in colocarTema)
         root.style.setProperty(cor, colocarTema[cor]);
@@ -339,15 +364,14 @@ var Agenda = class Agenda {
       return;
     }
 
-    let 
-      temaAtual = String(this.dadosAgenda.tema),
-      temaAtualIndex = Object.keys(temas).indexOf(temaAtual),
-      proximoTemaIndex =
-        temaAtualIndex + 1 > Object.keys(temas).length - 1
-          ? 0
-          : temaAtualIndex + 1,
-      proximoTemaNome = Object.keys(temas)[proximoTemaIndex],
-      proximoTema = temas[proximoTemaNome];
+    const temaAtual = String(this.dadosAgenda.tema);
+    const temaAtualIndex = Object.keys(temas).indexOf(temaAtual);
+    const proximoTemaIndex =
+      temaAtualIndex + 1 > Object.keys(temas).length - 1
+        ? 0
+        : temaAtualIndex + 1;
+    const proximoTemaNome = Object.keys(temas)[proximoTemaIndex];
+    const proximoTema = temas[proximoTemaNome];
 
     this.dadosAgenda.tema = proximoTemaNome;
 
@@ -358,25 +382,44 @@ var Agenda = class Agenda {
     this.atualizarDados();
   }
 
-  copiarDados(e){
-    let dadosAtuais = localStorage.getItem("MIGLIORELLI@agenda")
-    navigator.clipboard.writeText(dadosAtuais)
+  copiarDados(e) {
+    const dadosAtuais = localStorage.getItem("MIGLIORELLI@agenda");
+    navigator.clipboard.writeText(dadosAtuais);
 
-    e.innerHTML = "Dados copiados"
+    e.innerHTML = "Dados copiados";
   }
 
-  fazerBackup(){
-    this.limparDados()
+  fazerBackup() {
+    const textField = document.querySelector(".novos-dados-txt");
+    const novosDados = textField.value;
+    if (!textField.value) return;
 
-    let textField = document.querySelector(".novos-dados-txt")
-    let novosDados = textField.value
+    this.limparDados();
 
-    textField.value = ""
-    localStorage.setItem("MIGLIORELLI@agenda", novosDados)
-    
-    this.carregarDados()
-    this.iniciarAgenda()
-    this.atualizarDados()
+    textField.value = "";
+    localStorage.setItem("MIGLIORELLI@agenda", novosDados);
+
+    this.carregarDados();
+    this.iniciarAgenda();
+    this.atualizarDados();
+  }
+
+  definirConfig({ usuario = false, genero = "de", fonte }) {
+    const titulo = document.querySelector(".header-title h1");
+    titulo.innerHTML = usuario
+      ? `Agenda ${genero} <span>${usuario}</span>`
+      : `Agenda <span>Pessoal</span>`;
+    document.title = usuario ? `Agenda de ${usuario}` : `Agenda Pessoal`;
+    this.dadosAgenda.config[0] = usuario;
+    this.dadosAgenda.config[1] = genero;
+
+    const botaoFonte = document.getElementById(`${fonte}`);
+    botaoFonte.checked = true;
+
+    const root = document.querySelector(":root");
+    root.style.setProperty("--fonte", fonte);
+    this.dadosAgenda.config[2] = fonte;
+
+    this.atualizarDados();
   }
 };
-
