@@ -36,9 +36,6 @@ botaoSubmit.addEventListener("click", () => {
   } else if (!tituloValue) {
     mostrarErro("Você precisa colocar um título.");
     return false;
-  } else if (!dataValue) {
-    mostrarErro("Você precisa definir uma dataValue.");
-    return false;
   } else {
     erro.classList.remove("mostrar-erro");
 
@@ -58,13 +55,13 @@ botaoSubmit.addEventListener("click", () => {
 function toggleCard(botao) {
   const cardId = botao.id;
   const div = document.querySelector(`div.${cardId}`);
-  const cards = document.querySelectorAll(".tela-flutuante")
+  const cards = document.querySelectorAll(".tela-flutuante");
 
-  cards.forEach(card => {
+  cards.forEach((card) => {
     if (!card.classList.contains(botao.id)) {
-      card.classList.remove("mostrar-card")
+      card.classList.remove("mostrar-card");
     }
-  })
+  });
 
   if (div.classList.contains("mostrar-card")) {
     div.style.opacity = "0";
@@ -89,11 +86,11 @@ salvarConfig.addEventListener("click", (botao) => {
   let genero = formularioConfig.querySelector(
     'input[name="config-usuario-genero"]:checked'
   );
-  genero = genero ? genero.value : false;
+  genero = genero ? genero.value : "de";
 
   let fonte = formularioConfig.querySelector(
     'input[name="config-font"]:checked'
-  ).value;
+  ).value
 
   agenda.definirConfig({ usuario, genero, fonte });
   toggleCard(botao.target);

@@ -504,9 +504,8 @@ body {
   text-align: center;
 }
 
-.backup-titulo h2 {
-  padding-bottom: 1em;
-  font-size: 26px;
+.backup-titulo h1 {
+  padding-bottom: .5em;
   text-decoration: underline var(--cor-principal-1) 3px;
 }
 
@@ -533,6 +532,7 @@ body {
 
   border-radius: 10px;
   padding: 1em 2em;
+  margin: 1em 0;
 }
 
 .novo-json {

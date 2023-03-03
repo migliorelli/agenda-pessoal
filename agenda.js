@@ -180,7 +180,7 @@ var Agenda = class Agenda {
     tema = "roxoEscuro",
     usuario = false,
     genero = "de",
-    fonte = '"Nunito", sans-serif'
+    fonte = 1
   ) {
     if (window.localStorage.length == 0) {
       localStorage.setItem(
@@ -199,8 +199,7 @@ var Agenda = class Agenda {
     }
 
     for (let item in Dados) {
-      if (item === "tema") continue;
-      if (item === "config") continue;
+      if (item === "tema" || item === "config") continue;
 
       const checado = Object.keys(Dados[item])[1];
       if (!(checado in Dados[item])) {
@@ -339,10 +338,12 @@ var Agenda = class Agenda {
 
   limparDados() {
     const temaAtual = this.dadosAgenda.tema;
+    const configAtual = this.dadosAgenda.config;
+
     localStorage.clear();
     this.agendaContainer.innerHTML = "";
 
-    this.carregarDados(temaAtual);
+    this.carregarDados(temaAtual, configAtual[0], configAtual[1], configAtual[2]);
     this.atualizarDados();
     this.iniciarAgenda();
   }
@@ -413,11 +414,31 @@ var Agenda = class Agenda {
     this.dadosAgenda.config[0] = usuario;
     this.dadosAgenda.config[1] = genero;
 
-    const botaoFonte = document.getElementById(`${fonte}`);
+    let botaoFonte;
+    let fonteNome;
+    switch (Number(fonte)) {
+      case 1:
+        botaoFonte = document.getElementById(fonte);
+        fonteNome = '"Nunito", sans-serif';
+        break;
+
+      case 2:
+        botaoFonte = document.getElementById(fonte);
+        fonteNome = '"Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif';
+        break;
+
+      case 3:
+        botaoFonte = document.getElementById(fonte);
+        fonteNome = "Arial, Helvetica, sans-serif";
+        break;
+
+      default:
+        break;
+    }
     botaoFonte.checked = true;
 
     const root = document.querySelector(":root");
-    root.style.setProperty("--fonte", fonte);
+    root.style.setProperty("--fonte", fonteNome);
     this.dadosAgenda.config[2] = fonte;
 
     this.atualizarDados();
