@@ -187,7 +187,7 @@ var Agenda = class Agenda {
         "MIGLIORELLI@agenda",
         `{tema: "${tema}", config: [${usuario}, ${genero}, ${fonte}]}`
       );
-      this.definirDados({ tema: tema, config: [usuario, genero, fonte] });
+      this.definirDados({ tema, config: [usuario, genero, fonte] });
       return;
     }
 
@@ -289,9 +289,9 @@ var Agenda = class Agenda {
 
   adicionarItem(titulo, anotacao = "", data, hora = "") {
     this.dadosAgenda[titulo] = {
-      anotacao: anotacao,
-      data: data,
-      hora: hora,
+      anotacao,
+      data,
+      hora,
       checado: false,
     };
     this.#incorporarItem(titulo, anotacao, data, hora, false);
