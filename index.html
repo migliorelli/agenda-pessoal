@@ -79,25 +79,24 @@
     </header>
     <main class="main" id="main">
       <div class="agenda-pessoal">
-        <div class="add-elemento">
-          <div class="form-add-elemento">
-            <div class="input-name-div">
-              <span class="nome-span">Campos com <strong>*</strong> são obrigatórios</span>
-              <input class="titulo" type="text" name="nome" id="nome" placeholder="* título do novo agendamento..." autocomplete="off" spellcheck="false">
+          <div class="add-elemento">
+            <div class="form-add-elemento">
+              <div class="input-name-div">
+                <span class="nome-span">Campos com <strong>*</strong> são obrigatórios</span>
+                <input class="titulo" type="text" name="nome" id="nome" placeholder="* título do novo agendamento..." autocomplete="off" spellcheck="false">
+              </div>
+              <div class="textfield-div">
+                <textarea class="anotação" name="anotação" id="anotação" placeholder=" Anotações... (HTML permitido) "autocomplete="off" spellcheck="false"></textarea>
+              </div>
+              <div class="data-submit-div">
+                <input class="data" type="text" name="data" id="data" placeholder="  data..." onfocus="this.type = 'date'" onblur="this.type = 'text'">
+                <input class="hora" type="text" name="hora" id="hora" placeholder="  hora..." onfocus="this.type = 'time'" onblur="this.type = 'text'">
+                <input class="botao-submit" type="submit" value="Adicionar">
+              </div>
             </div>
-            <div class="textfield-div">
-              <textarea class="anotação" name="anotação" id="anotação" placeholder=" Anotações... (HTML permitido) "autocomplete="off" spellcheck="false"></textarea>
-            </div>
-            <div class="data-submit-div">
-              <input class="data" type="text" name="data" id="data" placeholder="  data..." onfocus="this.type = 'date'" onblur="this.type = 'text'">
-              <input class="hora" type="text" name="hora" id="hora" placeholder="  hora..." onfocus="this.type = 'time'" onblur="this.type = 'text'">
-              <input class="botao-submit" type="submit" value="Adicionar">
-            </div>
+            <p class="erro"></p>
           </div>
-          <p class="erro"></p>
-        </div>
-        <div class="agendamentos">
-          </div>
+          <div class="agendamentos" />
         </div>
         <div class="limpar-agenda">
           <button onclick="agenda.limparDados()">Limpar agenda</button>

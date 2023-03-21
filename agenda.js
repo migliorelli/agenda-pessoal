@@ -254,10 +254,10 @@ var Agenda = class Agenda {
   #incorporarItem(titulo, anotacao, data, hora, checado) {
     const novaDiv = document.createElement("div");
     let [anoDiv, mesDiv, diaDiv] = data.split("-");
-    const dataDiv = `${diaDiv}/${mesDiv}/${anoDiv}`;
+    const dataDiv = data ? `${diaDiv}/${mesDiv}/${anoDiv}` : data
     const anotacaoDiv =
       anotacao === "" ? "" : `<div class="anotacao-div">${anotacao}</div>`;
-    const horaDiv = hora === "" ? "" : hora + ", ";
+    const horaDiv = hora ? `${hora}, `: hora 
     const taChecado = checado === true ? "checked" : "";
 
     if (checado) novaDiv.classList.toggle("checado");
@@ -271,7 +271,7 @@ var Agenda = class Agenda {
     </div>
     <div class="agenda-item-descricao">
       ${anotacaoDiv}
-      <span>${horaDiv}${dataDiv}</span>
+      <span>${horaDiv ? horaDiv : ""}${dataDiv}</span>
     </div>
     <div class="botao-remover">
       <button onclick="agenda.removerItem(this.value)" value="${titulo}">Remover</button>
