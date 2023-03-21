@@ -437,11 +437,9 @@ body {
   filter: var(--cor-filtro);
 }
 
-
 .temas-botao {
   top: 100px;
 }
-
 
 .temas-botao img {
   height: 80%;
@@ -461,10 +459,12 @@ body {
   padding: 0.3em;
 }
 
-.tela-backup, .tela-config {
+.tela-backup,
+.tela-config {
   width: 20em;
   height: 26em;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
+  place-items: center;
 
   background-color: var(--cor-container);
   color: var(--cor-texto-container);
@@ -477,20 +477,15 @@ body {
   margin-left: -10rem;
 
   z-index: 10;
-  
+
   display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: .5em;
-  flex-wrap: wrap;
 
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
-  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028), 
-  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
-  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
-  100px 100px 80px rgba(0, 0, 0, 0.07);
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
   transition: backup 100ms ease-in-out 0s;
 
   border-radius: 20px;
@@ -499,46 +494,51 @@ body {
 }
 
 .mostrar-card {
-  display: flex;
+  display: grid;
 }
 
-.backup-titulo, .backup-descricao {
+.backup-titulo,
+.backup-descricao {
   text-align: center;
 }
 
 .backup-titulo h1 {
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
   text-decoration: underline var(--cor-principal-1) 3px;
 }
 
-.backup-titulo span, .backup-descricao span {
+.backup-titulo span,
+.backup-descricao span {
   text-align: center;
   font-size: 16px;
 }
 
-.backup-titulo span span, .backup-descricao span span{
+.backup-titulo span span,
+.backup-descricao span span {
   background-color: var(--cor-principal-1);
-  padding: .1em .3em;
+  padding: 0.1em 0.3em;
   border-radius: 5px;
   color: var(--cor-texto-botoes);
 }
 
-.backup-descricao span span{
- cursor: pointer;
+.backup-descricao span span {
+  cursor: pointer;
 }
 
 .json-atual {
   cursor: pointer;
+  text-align: center;
   background-color: var(--cor-principal-1);
   color: var(--cor-texto-botoes);
 
   border-radius: 10px;
   padding: 1em 2em;
   margin: 1em 0;
+  width: 50%;
 }
 
 .novo-json {
-  width: 100%;
+  width: 80%;
   height: 6em;
   display: flex;
   justify-content: center;
@@ -547,7 +547,7 @@ body {
 .novos-dados-txt {
   background-color: var(--cor-principal-2);
   border-radius: 10px;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   color: var(--cor-texto-botoes);
   width: 90%;
 
@@ -562,7 +562,7 @@ body {
     opacity: 1;
   }
 }
-  
+
 footer {
   display: flex;
   justify-content: center;
@@ -593,7 +593,6 @@ footer {
   color: black;
   text-decoration: underline var(--cor-principal-1) 3px;
   font-size: 35px;
-
 }
 
 .tela-config .config-form .config-section {
@@ -609,7 +608,7 @@ footer {
 .config-section-h2 {
   color: var(--cor-principal-1);
   text-decoration: underline var(--cor-principal-2) 3px;
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
   align-self: center;
   text-align: center;
 }
@@ -624,7 +623,7 @@ footer {
 .config-usuario input {
   color: var(--cor-texto-botoes);
   width: 60%;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   border-radius: 5px;
   background-color: var(--cor-principal-2);
 }
@@ -637,7 +636,7 @@ footer {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  gap: .5em;
+  gap: 0.5em;
   color: var(--cor-texto-botoes);
 }
 
@@ -656,7 +655,7 @@ footer {
   border-radius: 5px;
   text-align: center;
 
-  padding: .3em .5em;
+  padding: 0.3em 0.5em;
 
   width: 8em;
 }
@@ -679,14 +678,17 @@ footer {
   padding: 1em 3em;
 }
 
-@media screen and (min-width: 510px){ 
-  .tela-backup, .tela-config {
-    width: 24rem;
-    height: 30rem;
+.tela-backup,
+.tela-config {
+  width: 24rem;
+  height: 30rem;
 
-    margin-left: -12rem;
-    margin-top: -18rem;
-  }
+  margin-left: -12rem;
+  margin-top: -18rem;
+}
+
+.novo-json {
+  width: 100%;
 }
 
 .config-usuario-layout {
@@ -694,7 +696,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: .3em
+  gap: 0.3em;
 }
 
 .config-usuario-layout .sexo-radio {
@@ -706,7 +708,7 @@ footer {
   background-color: var(--cor-principal-2);
   font-size: 14px;
   border-radius: 5px;
-  
+
   width: 28.31px;
   height: 28.31px;
   display: flex;
@@ -716,12 +718,12 @@ footer {
 
 .config-usuario-layout label:hover {
   background-color: var(--cor-principal-1);
-  cursor: pointer ;
+  cursor: pointer;
 }
 
-.config-usuario-layout .sxM:checked ~ label[class=M] {
+.config-usuario-layout .sxM:checked ~ label[class="M"] {
   background-color: var(--cor-principal-1);
 }
-.config-usuario-layout .sxF:checked ~ label[class=F] {
+.config-usuario-layout .sxF:checked ~ label[class="F"] {
   background-color: var(--cor-principal-1);
 }
