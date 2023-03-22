@@ -4,6 +4,7 @@ var Agenda = class Agenda {
     this.agendaContainer = this.agenda.querySelector(".agendamentos");
 
     this.dadosAgenda = {};
+    this.dadosOrganizados = {};
     this.listaTemas = {
       roxoEscuro: {
         "--cor-fundo": "#28243c",
@@ -198,12 +199,15 @@ var Agenda = class Agenda {
       Dados.config = [usuario, genero, fonte];
     }
 
-    for (let item in Dados) {
-      if (item === "tema" || item === "config") continue;
+    for (let key in Dados) {
+      if (key === "tema" || key === "config") continue;
 
-      const checado = Object.keys(Dados[item])[1];
-      if (!(checado in Dados[item])) {
-        Dados[item].checado = false;
+      const checado = Object.keys(Dados[key])[1];
+      if (!(checado in Dados[key])) {
+        Dados[key].checado = false;
+      }
+      if (!key.titulo) {
+        Dados[key].titulo = key;
       }
     }
 
@@ -211,8 +215,47 @@ var Agenda = class Agenda {
   }
 
   definirDados(dados) {
-    if (!dados) throw "Não tem dado suficiente nessa porra :D";
-    this.dadosAgenda = dados;
+    if (!dados) throw "Sem dados";
+    else this.dadosAgenda = dados;
+
+    let itens = [];
+    Object.keys(dados).forEach((key, index) => {
+      if (index === 0 || index === 1) return;
+      itens.push(this.dadosAgenda[key]);
+    });
+
+    itens = this.#organizarItens(itens);
+    itens.forEach((item) => {
+      this.dadosOrganizados[item.titulo] = item;
+    });
+
+    this.iniciarAgenda()
+  }
+
+  #organizarItens(itens) {
+    return itens.sort((a, b) => {
+      a.data = a.data ? a.data : "0000/00/00"
+      b.data = b.data ? b.data : "0000/00/00"
+
+      const [anoA, mesA, diaA] = a.data.split("-");
+      const dataA = new Date(
+        parseInt(anoA),
+        parseInt(mesA),
+        parseInt(diaA)
+      );
+
+      const [anoB, mesB, diaB] = b.data.split("-");
+      const dataB = new Date(
+        parseInt(anoB),
+        parseInt(mesB),
+        parseInt(diaB)
+      );
+      
+      console.log(`A Split: ${anoA}-${mesA}-${diaA}\nA: ${dataA}\nB Split: ${anoB}-${mesB}-${diaB}\nB: ${dataB}`)
+      
+
+      return dataA - dataB;
+    });
   }
 
   iniciarAgenda() {
@@ -223,44 +266,29 @@ var Agenda = class Agenda {
     const dataHeader = document.querySelector(".data h3");
     dataHeader.innerHTML = hoje;
 
-    for (let titulo in this.dadosAgenda) {
-      const item = this.dadosAgenda[titulo];
-      if (titulo === "tema") {
-        this.mudarTema(item);
-        continue;
-      }
-      if (titulo === "config") {
-        const usuario = this.dadosAgenda.config[0];
-        const genero = this.dadosAgenda.config[1];
-        const fonte = this.dadosAgenda.config[2];
-        const config = { usuario, genero, fonte };
-        this.definirConfig(config);
+    const usuario = this.dadosAgenda.config[0];
+    const genero = this.dadosAgenda.config[1];
+    const fonte = this.dadosAgenda.config[2];
+    const config = { usuario, genero, fonte };
+    this.definirConfig(config);
 
-        continue;
-      }
+    this.mudarTema(this.dadosAgenda.tema);
 
-      let { anotacao, data, hora, checado } = item;
-
-      this.#incorporarItem(
-        String(titulo),
-        String(anotacao),
-        String(data),
-        String(hora),
-        Boolean(checado)
-      );
-    }
+    Object.keys(this.dadosOrganizados).forEach((key, index) => {
+      let { titulo, desc, data, hora, checado } = this.dadosOrganizados[key];
+      this.#incorporarItem(titulo, desc, data, hora, checado);
+    });
   }
 
-  #incorporarItem(titulo, anotacao, data, hora, checado) {
+  #incorporarItem(titulo, desc, data, hora, check) {
     const novaDiv = document.createElement("div");
-    let [anoDiv, mesDiv, diaDiv] = data.split("-");
-    const dataDiv = data ? `${diaDiv}/${mesDiv}/${anoDiv}` : data
-    const anotacaoDiv =
-      anotacao === "" ? "" : `<div class="anotacao-div">${anotacao}</div>`;
-    const horaDiv = hora ? `${hora}, `: hora 
-    const taChecado = checado === true ? "checked" : "";
+    let [anoDiv, mesDiv, diaDiv] = data ? data.split("-") : [null, null, null]
+    const dataDiv = data ? `${diaDiv}/${mesDiv}/${anoDiv}` : "";
+    const descDiv = desc ? `<div class="desc-div">${desc}</div>` : "";
+    const horaDiv = hora ? `${hora}, ` : "";
+    const checado = check ? "checked" : "";
 
-    if (checado) novaDiv.classList.toggle("checado");
+    if (check) novaDiv.classList.toggle("checado");
 
     novaDiv.classList.add("item-background");
     novaDiv.setAttribute("id", titulo.replace(/\s/g, ""));
@@ -270,15 +298,15 @@ var Agenda = class Agenda {
       <h3>${titulo}</h3>
     </div>
     <div class="agenda-item-descricao">
-      ${anotacaoDiv}
-      <span>${horaDiv ? horaDiv : ""}${dataDiv}</span>
+      ${descDiv}
+      <span>${horaDiv}${dataDiv}</span>
     </div>
     <div class="botao-remover">
       <button onclick="agenda.removerItem(this.value)" value="${titulo}">Remover</button>
     </div>
     <div class="checkbox" >
       <label class="checkbox-label">
-        <input type="checkbox" onchange="agenda.armazenarCheck(this)" value="${titulo}" ${taChecado}>
+        <input type="checkbox" onchange="agenda.armazenarCheck(this)" value="${titulo}" ${checado}>
         <span class="checkmark"></span>
       </label>
     </div>
@@ -287,16 +315,16 @@ var Agenda = class Agenda {
     this.agendaContainer.append(novaDiv);
   }
 
-  adicionarItem(titulo, anotacao = "", data, hora = "") {
+  adicionarItem(titulo, desc, data, hora, checado = false) {
     this.dadosAgenda[titulo] = {
-      anotacao,
+      titulo,
+      desc,
       data,
       hora,
-      checado: false,
+      checado,
     };
-    this.#incorporarItem(titulo, anotacao, data, hora, false);
-
     this.atualizarDados();
+    this.#incorporarItem(titulo, desc, data, hora, checado);
   }
 
   itemExiste(tituloItem) {
@@ -342,10 +370,14 @@ var Agenda = class Agenda {
 
     localStorage.clear();
     this.agendaContainer.innerHTML = "";
-
-    this.carregarDados(temaAtual, configAtual[0], configAtual[1], configAtual[2]);
+    
+    this.carregarDados(
+      temaAtual,
+      configAtual[0],
+      configAtual[1],
+      configAtual[2]
+      );
     this.atualizarDados();
-    this.iniciarAgenda();
   }
 
   mudarTema(tema = false) {
@@ -424,7 +456,8 @@ var Agenda = class Agenda {
 
       case 2:
         botaoFonte = document.getElementById(fonte);
-        fonteNome = '"Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif';
+        fonteNome =
+          '"Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif';
         break;
 
       case 3:

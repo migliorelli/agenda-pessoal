@@ -3,7 +3,6 @@ const agenda = new Agenda(agendaFormulario);
 const formulario = document.querySelector(".form-add-elemento");
 
 agenda.carregarDados();
-agenda.iniciarAgenda();
 
 function mostrarErro(mensagem) {
   const error = document.querySelector(".erro");
@@ -21,32 +20,28 @@ botaoSubmit.addEventListener("click", () => {
   erro.classList.remove("mostrar-erro");
 
   const titulo = formulario.querySelector(".titulo");
-  const anotacoes = formulario.querySelector(".anotação");
+  const desc = formulario.querySelector(".desc");
   const data = formulario.querySelector(".data");
   const hora = formulario.querySelector(".hora");
 
-  const tituloValue = titulo.value;
-  const anotacoesValue = anotacoes.value;
-  const dataValue = data.value;
-  const horaValue = hora.value;
-
-  if (agenda.itemExiste(tituloValue)) {
+  if (agenda.itemExiste(titulo.value)) {
     mostrarErro("Agendamento já existe.");
     return false;
-  } else if (!tituloValue) {
+  } else if (!titulo.value) {
     mostrarErro("Você precisa colocar um título.");
     return false;
   } else {
     erro.classList.remove("mostrar-erro");
 
-    String(tituloValue);
-    String(anotacoesValue);
-    String(dataValue);
-    String(horaValue);
-    agenda.adicionarItem(tituloValue, anotacoesValue, dataValue, horaValue);
+    agenda.adicionarItem(
+      titulo.value,
+      desc.value ? desc.value : null,
+      data.value ? data.value : null,
+      hora.value ? hora.value : null
+    );
 
     titulo.value = "";
-    anotacoes.value = "";
+    desc.value = "";
     data.value = "";
     hora.value = "";
   }
@@ -90,7 +85,7 @@ salvarConfig.addEventListener("click", (botao) => {
 
   let fonte = formularioConfig.querySelector(
     'input[name="config-font"]:checked'
-  ).value
+  ).value;
 
   agenda.definirConfig({ usuario, genero, fonte });
   toggleCard(botao.target);
