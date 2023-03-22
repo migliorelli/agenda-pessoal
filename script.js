@@ -35,9 +35,9 @@ botaoSubmit.addEventListener("click", () => {
 
     agenda.adicionarItem(
       titulo.value,
-      desc.value ? desc.value : null,
-      data.value ? data.value : null,
-      hora.value ? hora.value : null
+      desc.value ? desc.value : false,
+      data.value ? data.value : false,
+      hora.value ? hora.value : false
     );
 
     titulo.value = "";

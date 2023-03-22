@@ -282,7 +282,7 @@ var Agenda = class Agenda {
 
   #incorporarItem(titulo, desc, data, hora, check) {
     const novaDiv = document.createElement("div");
-    let [anoDiv, mesDiv, diaDiv] = data ? data.split("-") : [null, null, null]
+    let [anoDiv, mesDiv, diaDiv] = data ? data.split("-") : [false, false, false]
     const dataDiv = data ? `${diaDiv}/${mesDiv}/${anoDiv}` : "";
     const descDiv = desc ? `<div class="desc-div">${desc}</div>` : "";
     const horaDiv = hora ? `${hora}, ` : "";
