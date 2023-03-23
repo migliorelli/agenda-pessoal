@@ -378,6 +378,7 @@ var Agenda = class Agenda {
       configAtual[2]
       );
     this.atualizarDados();
+    this.agendaContainer.innerHTML = ""
   }
 
   mudarTema(tema = false) {
