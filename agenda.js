@@ -234,17 +234,17 @@ var Agenda = class Agenda {
 
   #organizarItens(itens) {
     return itens.sort((a, b) => {
-      a.data = a.data ? a.data : "0000/00/00"
-      b.data = b.data ? b.data : "0000/00/00"
+      const A = a.data ? a.data : "0001-01-01"
+      const B = b.data ? b.data : "0001-01-01"
 
-      const [anoA, mesA, diaA] = a.data.split("-");
+      const [anoA, mesA, diaA] = A.split("-");
       const dataA = new Date(
         parseInt(anoA),
         parseInt(mesA),
         parseInt(diaA)
       );
 
-      const [anoB, mesB, diaB] = b.data.split("-");
+      const [anoB, mesB, diaB] = B.split("-");
       const dataB = new Date(
         parseInt(anoB),
         parseInt(mesB),
