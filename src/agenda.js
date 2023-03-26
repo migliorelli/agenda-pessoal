@@ -34,6 +34,8 @@ var Agenda = class Agenda {
     this.definirConfig(config);
   }
 
+  
+
   definirDados(dados) {
     if (dados && Object.keys(dados).length) {
       const Dados = Object.keys(dados).map((key) => dados[key]);
@@ -238,6 +240,11 @@ var Agenda = class Agenda {
   }
 
   copiarDados(botao) {
+    botao.innerHTML = "Dados copiados";
+    setTimeout(() => {
+      botao.innerHTML = "Copiar dados";
+    }, 5000);
+
     const dados = localStorage.getItem("MIGLIORELLI@agendaDados");
     const config = localStorage.getItem("MIGLIORELLI@agendaConfig");
     const copy = JSON.stringify({
@@ -246,21 +253,28 @@ var Agenda = class Agenda {
     });
 
     navigator.clipboard.writeText(copy)
-
-    botao.innerHTML = "Dados copiados";
   }
 
   fazerBackup() {
     const textField = document.querySelector(".novos-dados-txt");
-    if (!textField.value) return;
-    this.limparDados();
-    textField.value = "";
+    
+    try {
+      JSON.parse(textField.value)
+    } catch (e) {
+      textField.value = `"${textField.value.slice(0, 30)}"... NÃO É UM FORMATO VÁLIDO.`
+      return false
+    }
 
+    this.limparDados();
     const dadosCopiados = JSON.parse(textField.value);
     const { dados, config } = dadosCopiados;
     localStorage.setItem("MIGLIORELLI@agendaDados", dados);
     localStorage.setItem("MIGLIORELLI@agendaConfig", config);
 
+    textField.value = "";
     this.carregarDados();
+
+    return true
   }
+
 };

@@ -108,6 +108,7 @@ salvarConfig.addEventListener("click", (botao) => {
 
 const botaoBackup = document.querySelector(".backup-botao");
 botaoBackup.addEventListener("click", (botao) => {
-  agenda.fazerBackup();
-  toggleCard(botao.target);
+  if (agenda.fazerBackup()) {
+    toggleCard(botao.target);
+  }
 });
