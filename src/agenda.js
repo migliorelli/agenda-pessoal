@@ -26,7 +26,7 @@ var Agenda = class Agenda {
       };
       localStorage.setItem("MIGLIORELLI@agendaConfig", JSON.stringify(configs));
       this.definirDados({});
-      this.definirConfig(config);
+      this.definirConfig(configs);
       return;
     }
 
@@ -245,7 +245,7 @@ var Agenda = class Agenda {
       config,
     });
 
-    navigator.clipboard.writeText(copy);
+    navigator.clipboard.writeText(copy)
 
     botao.innerHTML = "Dados copiados";
   }
