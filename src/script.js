@@ -19,31 +19,45 @@ botaoSubmit.addEventListener("click", () => {
   const erro = document.querySelector(".erro");
   erro.classList.remove("mostrar-erro");
 
-  const titulo = formulario.querySelector(".titulo");
-  const desc = formulario.querySelector(".desc");
-  const data = formulario.querySelector(".data");
-  const hora = formulario.querySelector(".hora");
+  const tituloField = formulario.querySelector(".titulo");
+  const titulo = tituloField.value;
 
-  if (agenda.itemExiste(titulo.value)) {
+  const descField = formulario.querySelector(".desc");
+  const desc = descField.value ? descField.value : false;
+
+  const dataField = formulario.querySelector(".data");
+  const horaField = formulario.querySelector(".hora");
+  let data = false;
+  if (dataField.value) {
+    const [ano, mes, dia] = dataField.value.split("-");
+    const [horas, minutos] = horaField.value
+      ? horaField.value.split(":")
+      : ["00", "00"];
+    data = `${mes - 1} ${dia} ${ano} ${horas}:${minutos}`;
+  }
+
+  if (agenda.itemExiste(titulo)) {
     mostrarErro("Agendamento já existe.");
-    return false;
-  } else if (!titulo.value) {
+    return;
+
+  } else if (!titulo) {
     mostrarErro("Você precisa colocar um título.");
-    return false;
+    return;
+
+  } else if (horaField.value && !dataField.value) {
+    mostrarErro("Não pode ter hora sem data.");
+    return;
+
   } else {
     erro.classList.remove("mostrar-erro");
 
-    agenda.adicionarItem(
-      titulo.value,
-      desc.value ? desc.value : false,
-      data.value ? data.value : false,
-      hora.value ? hora.value : false
-    );
+    agenda.adicionarItem(titulo, desc, data);
 
-    titulo.value = "";
-    desc.value = "";
-    data.value = "";
-    hora.value = "";
+    tituloField.value = "";
+    descField.value = "";
+    dataField.value = "";
+
+    horaField.value = "";
   }
 });
 
@@ -79,15 +93,16 @@ salvarConfig.addEventListener("click", (botao) => {
   usuario = usuario.value ? usuario.value : false;
 
   let genero = formularioConfig.querySelector(
-    'input[name="config-usuario-genero"]:checked'
+    '[name="config-usuario-genero"]:checked'
   );
-  genero = genero ? genero.value : "de";
+  genero = genero ? genero.value : 0;
 
-  let fonte = formularioConfig.querySelector(
-    'input[name="config-font"]:checked'
-  ).value;
+  let fonte = formularioConfig.querySelector('[name="config-font"]:checked');
+  fonte = fonte.value;
 
-  agenda.definirConfig({ usuario, genero, fonte });
+  const tema = agenda.config.tema;
+
+  agenda.definirConfig({ usuario, genero, fonte, tema });
   toggleCard(botao.target);
 });
 

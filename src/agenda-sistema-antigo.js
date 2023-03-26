@@ -271,16 +271,15 @@ var Agenda = class Agenda {
     const fonte = this.dadosAgenda.config[2];
     const config = { usuario, genero, fonte };
     this.definirConfig(config);
-
     this.mudarTema(this.dadosAgenda.tema);
 
     Object.keys(this.dadosOrganizados).forEach((key, index) => {
       let { titulo, desc, data, hora, checado } = this.dadosOrganizados[key];
-      this.#incorporarItem(titulo, desc, data, hora, checado);
+      this.#incorporarItem(titulo, desc, data, hora, checado, index);
     });
   }
 
-  #incorporarItem(titulo, desc, data, hora, check) {
+  #incorporarItem(titulo, desc, data, hora, check, index) {
     const novaDiv = document.createElement("div");
     let [anoDiv, mesDiv, diaDiv] = data ? data.split("-") : [false, false, false]
     const dataDiv = data ? `${diaDiv}/${mesDiv}/${anoDiv}` : "";
@@ -292,6 +291,7 @@ var Agenda = class Agenda {
 
     novaDiv.classList.add("item-background");
     novaDiv.setAttribute("id", titulo.replace(/\s/g, ""));
+    novaDiv.setAttribute("index", index)
 
     novaDiv.innerHTML = `   
     <div class="agenda-item-titulo">
@@ -333,12 +333,12 @@ var Agenda = class Agenda {
 
   removerItem(item) {
     for (let titulo in this.dadosAgenda) {
-      if (String(titulo) == String(item)) delete this.dadosAgenda[titulo];
+      if (titulo === item) delete this.dadosAgenda[titulo];
     }
 
     this.agendaContainer.innerHTML = "";
     this.atualizarDados();
-    this.iniciarAgenda();
+    this.definirDados()
   }
 
   armazenarCheck(checkbox) {

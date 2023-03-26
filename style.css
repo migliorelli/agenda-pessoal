@@ -91,6 +91,10 @@ body {
   width: 100%;
 }
 
+.nome-span {
+  user-select: none;
+}
+
 .item {
   padding-bottom: 0.5em;
   width: 85%;
@@ -113,6 +117,7 @@ body {
 }
 
 .data h3 {
+  user-select: none;
   background-color: var(--cor-principal-1);
   color: var(--cor-texto-botoes);
   padding: 0.5em 1em;
@@ -412,6 +417,7 @@ body {
 }
 
 .botao-flutuante {
+  user-select: none;
   position: fixed;
   top: 10px;
   right: 10px;

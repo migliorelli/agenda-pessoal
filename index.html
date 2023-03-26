@@ -30,9 +30,9 @@
         <div class="config-usuario">
           <h2 class="config-section-h2">Nome de Usuário</h2>
           <div class="config-usuario-layout">
-            <input class="sexo-radio sxM" type="radio" name="config-usuario-genero" id="do" value="do">
+            <input class="sexo-radio sxM" type="radio" name="config-usuario-genero" id="do" value="1">
             <label class="M" for="do">do</label>
-            <input class="sexo-radio sxF" type="radio" name="config-usuario-genero" id="da" value=da>
+            <input class="sexo-radio sxF" type="radio" name="config-usuario-genero" id="da" value="2">
             <label class="F" for="da">da</label>
             <input type="text" name="config-usuario" onchange='this.style.backgroundColor = "var(--cor-principal-1)"' id="usuario-input" placeholder="Escreva seu nome..." spellcheck="false" autocomplete="off" maxlength="18">
           </div>
@@ -41,15 +41,15 @@
           <h2 class="config-section-h2">Fonte</h2>
           <div class="config-font-fontes">
             <label class="config-font-nunito config-radio-label">
-              <input type="radio" name="config-font" id='1' value='1'>
+              <input type="radio" name="config-font" id='0' value='0'>
               <div class="radio-config-button">Nunito</div>
             </label>
             <label class="config-font-comicsans config-radio-label">
-              <input type="radio" name="config-font" id='2' value='2'>
+              <input type="radio" name="config-font" id='1' value='1'>
               <div class="radio-config-button">Comic Sans</div>
             </label>
             <label class="config-font-helveltica config-radio-label">
-              <input type="radio" name="config-font" id="3" value="3">
+              <input type="radio" name="config-font" id="2" value="2">
               <div class="radio-config-button">Helveltica</div>
             </label>
           </div>
@@ -66,7 +66,7 @@
     <div class="backup-botao botao-flutuante" id="tela-backup" onclick="toggleCard(this)">
       <img src="assets/backup.svg" alt="fazer-backup">
     </div>
-    <div class="temas-botao botao-flutuante" onclick="agenda.mudarTema()">
+    <div class="temas-botao botao-flutuante" onclick="agenda.definirTema()">
       <img src="assets/paleta.svg" alt="mudar-tema">
     </div>
     <header class="agenda-header">
@@ -107,6 +107,7 @@
       <h4>Por: Miguel Migliorelli Bringhenti</h4>
     </footer>
   </body>
-  <script src="agenda.js"></script>
-  <script src="script.js"></script>
+  <script src="./src/temas.js"></script>
+  <script src="./src/agenda.js"></script>
+  <script src="./src/script.js"></script>
 </html>
