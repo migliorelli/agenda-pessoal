@@ -15,11 +15,6 @@
   --fonte: "Nunito", sans-serif;
 }
 
-.testeeeee {
-  color: #d4b684;
-  color: #b19ae4;
-}
-
 *,
 ::before,
 ::after {
@@ -294,6 +289,7 @@ body {
 .agenda-item-titulo {
   padding: 0 0 0.5em 0.5em;
   width: 100%;
+  word-wrap: break-word;
   color: var(--cor-principal-1);
 }
 
