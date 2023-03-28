@@ -84,10 +84,10 @@
             <div class="form-add-elemento">
               <div class="input-name-div">
                 <span class="nome-span">Campos com <strong>*</strong> são obrigatórios</span>
-                <input class="titulo" type="text" name="nome" id="nome" placeholder="* título do novo agendamento..." autocomplete="off" spellcheck="false">
+                <input class="titulo" type="text" name="nome" id="nome" placeholder="* título do novo agendamento..." autocomplete="off" spellcheck="false">  
               </div>
               <div class="textfield-div">
-                <textarea class="desc" name="desc" id="desc" placeholder=" Descrição... (HTML permitido) "autocomplete="off" spellcheck="false"></textarea>
+                <textarea class="desc" name="desc" id="desc" placeholder=" Descrição... (HTML permitido) "autocomplete="off" spellcheck="false" oninput="this.style.height = this.value ? `${this.scrollHeight}px` : `40px`"></textarea>
               </div>
               <div class="data-submit-div">
                 <input class="data" type="text" name="data" id="data" placeholder="  data..." onfocus="this.type = 'date'" onblur="this.type = 'text'">
@@ -114,3 +114,4 @@
   <script src="./src/agenda.js"></script>
   <script src="./src/script.js"></script>
 </html>
+

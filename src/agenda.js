@@ -142,13 +142,13 @@ var Agenda = class Agenda {
     const itens = Object.keys(this.dados);
     if (itens.length) {
       itens.forEach((key, index) => {
-        let { titulo, desc, data, checado } = this.dados[key];
-        this.#incorporarItem(titulo, desc, data, checado, index);
+        let { titulo, desc, data, anot, checado } = this.dados[key];
+        this.#incorporarItem(titulo, desc, data, anot, checado, index);
       });
     }
   }
 
-  #incorporarItem(titulo, desc, data, check, index) {
+  #incorporarItem(titulo, desc, data, anot, check, index) {
     const div = document.createElement("div");
 
     let Data = "";
@@ -189,13 +189,14 @@ var Agenda = class Agenda {
         <span class="checkmark"></span>
       </label>
     </div>
+    <textarea class="agenda-item-anot" spellcheck="false" placeholder="Anotações..." index=${index} oninput="agenda.salvarAnotacao(this)">${anot ? anot : ""}</textarea>
     `;
 
     this.agendamentos.append(div);
   }
 
-  adicionarItem(titulo, desc, data, checado = false) {
-    this.dados[titulo] = { titulo, desc, data, checado };
+  adicionarItem(titulo, desc, data, anot = "", checado = false) {
+    this.dados[titulo] = { titulo, desc, data, anot, checado };
 
     this.atualizarDados();
     this.definirDados(this.dados);
@@ -237,6 +238,17 @@ var Agenda = class Agenda {
     }
 
     this.atualizarDados();
+  }
+
+  salvarAnotacao(textarea) {
+    const itens = Object.keys(this.dados)
+    const item = itens[textarea.getAttribute("index")]
+    const texto = textarea.value
+
+    textarea.style.height = texto ? `${textarea.scrollHeight}px` : `40px`;
+
+    this.dados[item].anot = texto
+    this.atualizarDados()
   }
 
   copiarDados(botao) {
