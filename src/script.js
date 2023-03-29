@@ -23,7 +23,7 @@ botaoSubmit.addEventListener("click", () => {
   const titulo = tituloField.value;
 
   const descField = formulario.querySelector(".desc");
-  const desc = descField.value ? descField.value : false;
+  const desc = descField.value ? descField.value.replace(/[\r\n]/ig, "<br>") : false;
 
   const dataField = formulario.querySelector(".data");
   const horaField = formulario.querySelector(".hora");

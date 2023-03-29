@@ -54,9 +54,6 @@ var Agenda = class Agenda {
     const { usuario, genero, fonte, tema } = config;
 
     const titulo = document.querySelector(".header-title h1");
-    const generoRadios = document.querySelectorAll(
-      '[name="config-usuario-genero"]'
-    );
     const usuarioField = document.querySelector(
       '.config-usuario input[type="text"]'
     );
@@ -66,12 +63,10 @@ var Agenda = class Agenda {
       switch (genero) {
         case "1":
           prefixo = "do";
-          generoRadios[0].checked = true;
           break;
 
         case "2":
           prefixo = "da";
-          generoRadios[1].checked = true;
           break;
 
         default:
