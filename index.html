@@ -22,7 +22,7 @@
         <span>Agora, em outro dispositivo, cole os dados que você copiou no campo a seguir, e clique <span class="backup-botao" id="tela-backup">aqui</span> para fazer o backup</span>
       </div>
       <div class="novo-json">
-        <textarea class="novos-dados-txt" name="novo-json" id="novo-json" placeholder="Cole aqui os seus dados..." spellcheck="false"></textarea>
+        <textarea class="novos-dados-txt" name="novo-json" id="novo-json" placeholder="Cole aqui os seus dados..." spellcheck="false" oninput="this.style.height = this.value ? `${this.scrollHeight}px` : `40px`"></textarea>
       </div>
     </div>
     <div class="tela-config tela-flutuante">
