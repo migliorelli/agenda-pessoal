@@ -1,4 +1,7 @@
 @import "https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;500;600;700;800;900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap";
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
 
 :root {
   --cor-fundo: #28243c;
@@ -466,7 +469,7 @@ body {
 .tela-backup,
 .tela-config {
   width: 20em;
-  height: 26em;
+  min-height: 26em;
   padding: 0.5em 1em;
   place-items: center;
 
@@ -544,6 +547,7 @@ body {
 .novo-json {
   width: 80%;
   height: 6em;
+  max-height: 6em;
   display: flex;
   justify-content: center;
 }
@@ -644,12 +648,18 @@ footer a {
   background-color: var(--cor-principal-1);
 }
 
-.tela-config .config-form .config-font .config-font-fontes {
+.tela-config .config-form .config-font {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   gap: 0.5em;
   color: var(--cor-texto-botoes);
+}
+
+.config-font-fontes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: .5em;
 }
 
 .config-radio-label {
@@ -693,7 +703,8 @@ footer a {
 .tela-backup,
 .tela-config {
   width: 24rem;
-  height: 30rem;
+  min-height: 30rem;
+  height: auto;
 
   margin-left: -12rem;
   margin-top: -18rem;

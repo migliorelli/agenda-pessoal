@@ -9,6 +9,9 @@ var Agenda = class Agenda {
       '"Nunito", sans-serif',
       '"Comic Sans MS", "Chalkboard SE", "Comic Neue", sans-serif',
       "Arial, Helvetica, sans-serif",
+      "'Open Sans', sans-serif",
+      "'Montserrat', sans-serif",
+      "'Noto Sans', sans-serif"
     ];
     this.temas = Temas;
   }
@@ -87,6 +90,7 @@ var Agenda = class Agenda {
     const fonteBtn = document.getElementById(fonte);
     fonteBtn.checked = true;
     const Sfonte = this.fontes[fonte];
+    console.log(Sfonte)
 
     const root = document.querySelector(":root");
     root.style.setProperty("--fonte", Sfonte);
