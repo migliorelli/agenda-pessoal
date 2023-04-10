@@ -27,8 +27,8 @@
   outline: none;
   scroll-behavior: smooth;
   flex-wrap: wrap;
-  transition: color 1000ms linear;
-  transition: background-color 1000ms linear;
+  transition: color 400ms linear;
+  transition: background-color 400ms linear;
 }
 
 ::-webkit-scrollbar {
