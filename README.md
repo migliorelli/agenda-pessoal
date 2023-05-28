@@ -1,6 +1,7 @@
 # Agenda Pessoal
 
 ##### Ative os cookies do site para a agenda pessoal funcionar!
+###### Essa agenda está meio desatualizada: seu JS é bem porco
 
 ### [link do site](https://miguel-mib.github.io/AgendaPessoal/)
 
