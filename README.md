@@ -8,7 +8,7 @@ Meu primeiro projeto feito com HTML, CSS e JS
 
 ![](https://img.shields.io/badge/EM-DESENVOLVIMENTO-blueviolet)
 
-## Todo
+# Todo
 - Atualizar todo o site
 
 # Observações
