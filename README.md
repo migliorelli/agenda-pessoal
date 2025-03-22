@@ -1,7 +1,6 @@
 # Agenda Pessoal
 
-##### Ative os cookies do site para a agenda pessoal funcionar!
-###### Essa agenda está meio desatualizada: seu JS é bem porco
+Meu primeiro projeto feito com HTML, CSS e JS
 
 ### [link do site](https://migliorelli.github.io/agenda-pessoal/)
 
@@ -11,3 +10,7 @@
 
 ## Todo
 - Atualizar todo o site
+
+# Observações
+
+Feito com carinho pra uma pessoa especial
